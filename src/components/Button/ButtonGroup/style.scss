@@ -1,0 +1,28 @@
+// .buttonLoading {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   top: 0;
+//   left: 0;
+// }
+.buttonGroupCustom {
+  text-align: center;
+  .ant-radio-button-wrapper-checked:not(
+      [class*=' ant-radio-button-wrapper-disabled']
+    ).ant-radio-button-wrapper:first-child {
+    border-right-color: #a85f0a;
+  }
+  .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+    background: #a85f0a;
+    border-color: #a85f0a;
+  }
+  .ant-radio-button-wrapper:hover {
+    color: #a85f0a;
+  }
+  .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):before {
+    background: #a85f0a;
+  }
+}
