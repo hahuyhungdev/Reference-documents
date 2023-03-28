@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import mapReducer from 'apis/map.slice'
 import typeReducer from 'apis/types.slice'
 import heatmapReducer from 'pages/dashboard/heatmap.slice'
 import socketReducer from 'pages/dashboard/socket.slice'
@@ -16,7 +17,8 @@ export const store = configureStore({
     iotSocket: socketReducer,
     stateSwitch: stateSwitchReducer,
     serial: serialReducer,
-    type: typeReducer
+    type: typeReducer,
+    map: mapReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

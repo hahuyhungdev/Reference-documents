@@ -2,11 +2,13 @@ import '../../style.scss'
 
 import { UploadOutlined } from '@ant-design/icons'
 import { DatePicker, RadioChangeEvent, Switch } from 'antd'
+import { uploadMap } from 'apis/map.slice'
 import { ButtonCustom, ButtonGroup, PopupMap } from 'components'
 import moment from 'moment'
 import { getDevicesList } from 'pages/devices/devices.slice'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 import { RootState, useAppDispatch } from 'reduxStore'
 
 import { setSwitchAnchorView, setSwitchGridView, setSwitchHistorical } from '../../stateSwitch.slice'
@@ -92,6 +94,20 @@ export const SidebarRight = ({ sendDates }: sidebarRightProps) => {
       setDates([dates[0], date.unix()])
     }
   }
+  // handle submit upload
+  const handleSubmitUpload = (data: any) => {
+    setIsModalMap(false)
+    // console.log('data', data)
+    dispatch(uploadMap(data))
+      .unwrap()
+      .then((res) => {
+        console.log('res', res)
+        toast.success('Upload map success')
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+  }
 
   return (
     <div className='toolDasdboard'>
@@ -151,13 +167,10 @@ export const SidebarRight = ({ sendDates }: sidebarRightProps) => {
               setIsModalMap(false)
             }}
             onOpen={isModalMap}
-            onFinish={() => {
-              setIsModalMap(false)
-            }}
+            Finish={handleSubmitUpload}
           />
         )}
       </div>
-
       <div className='vehicleList'>
         <div className='titleVehicle'>VEHICLE LIST</div>
         <TableVehicle devicesData={devicesData} onIsVisableLineTrace={isVisableLineTrace} />

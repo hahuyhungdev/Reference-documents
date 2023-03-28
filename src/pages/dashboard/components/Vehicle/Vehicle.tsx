@@ -34,7 +34,7 @@ interface ITableVehicle {
 }
 
 export const TableVehicle = memo(({ devicesData, onIsVisableLineTrace }: ITableVehicle) => {
-  const [valueType, setValueType] = useState('')
+  const [valueType, setValueType] = useState('All')
   const typeList = useSelector((state: RootState) => state.type.typesList)
   const dispatch = useAppDispatch()
   useEffect(() => {
@@ -43,38 +43,44 @@ export const TableVehicle = memo(({ devicesData, onIsVisableLineTrace }: ITableV
       promise.abort()
     }
   }, [dispatch])
-  const onFilterChange = (value: string) => {
-    // console.log(value)
+  const onFilterChange = (value: any) => {
+    console.log(value)
     setValueType(value)
   }
   const dataSelect = [
-    // { label: 'All', value: 'All' },
+    { label: 'All', value: 'All' },
     ...typeList.map((item) => {
       return {
         label: item.name,
-        value: item.name
+        value: item.id
       }
     })
   ]
+
   // const onFilterChange with equal with valueType
-  // const dataFilter = devicesData?.filter((item) => {
-  //   console.log(item.typeName, valueType)
-  //   // if (valueType === '' || valueType === 'All') return true
-  //   // return item.typeName.includes(valueType)
-  //   return true
-  // })
+  const dataFilter = devicesData?.filter((item) => {
+    if (valueType === 'All') return true
+    return item.typeId?.toString() === valueType.toString()
+  })
 
   return (
     <div className='tableVahicle'>
       {/* <Select options={dataSelect} placeholder='Sort by type' onChange={onFilterChange} /> */}
-      <SelectOption ignore isIcon options={dataSelect} placeholder='Sort by type' onChange={onFilterChange} />
-      {/* <Table
+      <SelectOption
+        defaultValue={valueType}
+        ignore
+        isIcon
+        options={dataSelect}
+        placeholder='Select Type'
+        onChange={onFilterChange}
+      />
+      <Table
         rowKey={(record) => record.id}
         columns={columns}
         dataSource={dataFilter}
         pagination={false}
         scroll={{ y: onIsVisableLineTrace ? 150 : 270 }}
-      /> */}
+      />
     </div>
   )
 })

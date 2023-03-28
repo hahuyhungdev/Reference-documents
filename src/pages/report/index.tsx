@@ -3,44 +3,45 @@ import './style.scss'
 import { DatePicker } from 'antd'
 import { SelectOption } from 'components/Dropdown'
 import moment from 'moment'
-import React, { useState } from 'react'
+import { getDevicesList } from 'pages/devices/devices.slice'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { RootState } from 'reduxStore'
+import { RootState, useAppDispatch } from 'reduxStore'
 
 import ExcelExport from './excelExport'
 
 const { RangePicker } = DatePicker
 
 export const Report = () => {
-  const dataHeatmap = useSelector((state: RootState) => state.heatmap.data)
-  const [dates, setDates] = useState([0, 0])
+  const [startDate, setStartDate] = useState<number>(0)
+  const [endDate, setEndDate] = useState<number>(0)
+  const [device, setDevice] = useState<string>('')
+
+  const listDevices = useSelector((state: RootState) => state.devices.devicesList)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    const promise = dispatch(getDevicesList())
+    return () => {
+      promise.abort()
+    }
+  }, [dispatch])
   const onOk = (data: any) => {
     if (!data) return
     const [start, end] = data
     const startTimestamp = moment(start).unix()
     const endTimestamp = moment(end).unix()
-    setDates([startTimestamp, endTimestamp])
+    setStartDate(startTimestamp)
+    setEndDate(endTimestamp)
   }
-  console.log('dates', dates)
-  const filterDate = dataHeatmap.filter((item) => {
-    return item.date >= dates[0] && item.date <= dates[1]
+  const optionsDevices = listDevices.map((item) => {
+    return { value: item.deviceName, label: item.deviceName }
   })
-  const flatData = filterDate.map((item) => {
-    const date = moment.unix(item.date).format('YYYY-MM-DD HH:mm')
-    return item.logs.map((log) => {
-      return {
-        date,
-        x: log.x,
-        y: log.y,
-        value: log.value
-      }
-    })
-  })
-  console.log('flatData', flatData.flat())
 
   // func onChangeOptions
   const onChangeOptions = (value: any) => {
     // console.log(`selected ${value}`)
+    setDevice(value)
   }
   return (
     <div className='mainReport'>
@@ -55,13 +56,9 @@ export const Report = () => {
       </div>
       <div className='Devices'>
         <div className='span'>Devices</div>
-        <SelectOption
-          onChange={onChangeOptions}
-          placeholder='Select devices'
-          options={[{ value: 'dataFake Device 1', label: 'Device 1' }]}
-        />
+        <SelectOption onChange={onChangeOptions} placeholder='Select devices' options={optionsDevices} />
       </div>
-      <ExcelExport excelData={flatData.flat()} />
+      <ExcelExport startDate={startDate} endDate={endDate} name={device} />
     </div>
   )
 }

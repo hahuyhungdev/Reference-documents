@@ -3,7 +3,7 @@ import './style.scss'
 import { Button } from 'antd'
 interface ButtonCustomType {
   className?: string
-  onClick?: () => void
+  onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
   isIcon?: boolean
   icon?: any
   loading?: boolean
@@ -14,7 +14,7 @@ interface ButtonCustomType {
 
 export const ButtonCustom = ({
   className = '',
-  onClick = () => {},
+  onClick,
   isIcon = false,
   icon = null,
   loading = false,

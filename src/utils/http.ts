@@ -1,17 +1,16 @@
-import axios, { AxiosInstance } from 'axios'
+import axios, { AxiosInstance, HttpStatusCode } from 'axios'
+import { toast } from 'react-toastify'
+import { AuthResponse } from 'types/auth.type'
 
-import { getAccessTokenFromLS } from './auth'
+import { getAccessTokenFromLS, setAccessTokenToLS } from './auth'
 
 class Http {
   instance: AxiosInstance
   private accessToken: string
   constructor() {
-    this.accessToken =
-      getAccessTokenFromLS() ||
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlck5hbWUiOiJhZG1pbiIsImFsbG93X2FjY2VzcyI6MSwicm9sZSI6WyJhZG1pbiJdLCJpYXQiOjE2Nzg5NTc4ODgsImV4cCI6MTY3OTU2MjY4OH0.M6ufaqN7RQllAVUOavExIpJqKtjCd44CJDH0k5oLVw0'
+    this.accessToken = getAccessTokenFromLS()
     this.instance = axios.create({
       baseURL: 'http://192.168.1.164:3000/api/v1/',
-      // baseURL: 'http://localhost:5000/',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + this.accessToken
@@ -19,26 +18,39 @@ class Http {
     })
     // add a request interceptor
     this.instance.interceptors.request.use(
-      function (config) {
-        // Do something before request is sent
-        // console.log('config', config)
+      (config) => {
+        if (this.accessToken && config.headers) {
+          config.headers.Authorization = 'Bearer ' + this.accessToken
+          return config
+        }
         return config
       },
-      function (error) {
-        // Do something with request error
+      (error) => {
         return Promise.reject(error)
       }
     )
     // add a response interceptor
     this.instance.interceptors.response.use(
-      function (response) {
-        // Any status code that lie within the range of 2xx cause this function to trigger
-        // Do something with response data
+      (response) => {
+        // console.log('response', response)
+        const dataResponse = response.data as AuthResponse
+        let tokenHeader
+        const TokenAuth: any | undefined = response.config.headers.Authorization
+        if (TokenAuth && TokenAuth.startsWith('Bearer ')) {
+          tokenHeader = TokenAuth.split(' ')[1]
+        }
+        // console.log('tokenHeader', tokenHeader)
+        this.accessToken = dataResponse.data.accessToken || tokenHeader
+        setAccessTokenToLS(this.accessToken)
         return response
       },
       function (error) {
-        // Any status codes that falls outside the range of 2xx cause this function to trigger
-        // Do something with response error
+        if (error.response?.status !== HttpStatusCode.UnprocessableEntity && error.code !== 'ERR_CANCELED') {
+          const data: any | undefined = error.response?.data
+          const message = data?.message || error.message
+          console.log('error', data?.message, error.message)
+          toast.error(message)
+        }
         return Promise.reject(error)
       }
     )

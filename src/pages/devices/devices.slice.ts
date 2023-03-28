@@ -7,6 +7,7 @@ import http from 'utils/http'
 interface DevicesState {
   devicesList: DeviceType[]
   devicesListSearch: DeviceType[]
+  deivcesListExport: any
   devicesListLoading: boolean
   currentDeviceId: string | undefined
   isDuplicate: boolean
@@ -15,6 +16,7 @@ interface DevicesState {
 const initialState: DevicesState = {
   devicesList: [],
   devicesListSearch: [],
+  deivcesExport: [],
   devicesListLoading: false,
   currentDeviceId: undefined,
   isDuplicate: false
@@ -133,14 +135,19 @@ export const exportToExcel = createAsyncThunk(
   'devices/exportToExcel',
   async (
     body: {
-      deviceName: string
+      start: number
+      end: number
+      name: string
     },
     thunkAPI
   ) => {
     try {
-      const response = await http.post<SuccessResponse<{}>>('/devices/export-excel-file', body, {
-        signal: thunkAPI.signal
-      })
+      const response = await http.get<SuccessResponse<any>>(
+        `/devices/export-file?start=${body.start}&end=${body.end}&name=${body.name}`,
+        {
+          signal: thunkAPI.signal
+        }
+      )
       return response.data
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error)
@@ -187,6 +194,10 @@ const devicesSlice = createSlice({
       })
       .addCase(searchDeviceByName.fulfilled, (state, action) => {
         state.devicesListSearch = action.payload.data
+      })
+      .addCase(exportToExcel.fulfilled, (state, action) => {
+        // console.log(action.payload.data)
+        state.deivcesListExport = action.payload.data
       })
       .addMatcher<PendingAction>(
         (action) => action.type.endsWith('/pending'),

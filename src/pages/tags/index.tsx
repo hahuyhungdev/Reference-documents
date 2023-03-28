@@ -4,6 +4,7 @@ import { SearchOutlined } from '@ant-design/icons'
 import { AutoComplete, Input } from 'antd'
 import nodata from 'assets/images/nodata.png'
 import { HttpStatusCode } from 'axios'
+import { ModalAlert } from 'components'
 import { ButtonCustom } from 'components/Button'
 import { IconUnion } from 'components/Icons'
 import { PopupTag } from 'components/Popup'
@@ -23,6 +24,7 @@ export const Tags = () => {
   const [isCheckUseData, setIsCheckUseData] = useState(false)
   const [listIds, setListIds] = useState<number[]>([])
   const [optionsSearch, setoptionsSearch] = useState<{ label: string; value: string }[]>([])
+  const [isModalConfirm, setIsModalConfirm] = useState(false)
 
   const dispatch = useAppDispatch()
 
@@ -73,6 +75,7 @@ export const Tags = () => {
       .then((res) => {
         toast.success(res.message)
         setIsCheckUseData(false)
+        setIsModalConfirm(false)
       })
       .catch((err) => {
         if (err.response.status === HttpStatusCode.BadRequest) {
@@ -84,6 +87,11 @@ export const Tags = () => {
   const receiveIds = (values: number[]) => {
     setListIds(values)
   }
+  // cancel deleteManyDevices
+  const handleCancelDeleteMany = () => {
+    setIsModalConfirm(false)
+  }
+
   // here, we use debounce to delay the onChange event
   const onChangeSearch = debounce((value: string) => {
     console.log('onSelectSearch', value)
@@ -135,7 +143,26 @@ export const Tags = () => {
               <ButtonCustom isIcon icon={<IconUnion />} onClick={showPopup}>
                 Create
               </ButtonCustom>
-              <ButtonCustom onClick={handleDeleteMany}>Delete All</ButtonCustom>
+              {listIds.length > 1 && (
+                <ButtonCustom
+                  className='bg-red-500'
+                  onClick={() => {
+                    setIsModalConfirm(true)
+                  }}
+                >
+                  Delete All
+                </ButtonCustom>
+              )}
+              {isModalConfirm && (
+                <ModalAlert
+                  onFinish={handleDeleteMany}
+                  onCancel={handleCancelDeleteMany}
+                  title='Are you sure delete all devices?'
+                  content='You can’t undo this action'
+                  onOpen={isModalConfirm}
+                />
+              )}
+              {/* <ButtonCustom onClick={handleDeleteMany}>Delete All</ButtonCustom> */}
             </div>
           </header>
           {isModalVisible && (

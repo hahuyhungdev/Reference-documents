@@ -16,6 +16,7 @@ interface SelectOptionType {
 }
 export const SelectOption = ({
   className = '',
+  defaultValue,
   onChange,
   options = [],
   placeholder = '',
@@ -26,7 +27,7 @@ export const SelectOption = ({
 }: SelectOptionType) => {
   return (
     <Select
-      // defaultValue=""
+      defaultValue={defaultValue}
       className={className}
       onChange={onChange}
       // value={value}
@@ -38,7 +39,7 @@ export const SelectOption = ({
         <Option key={index} value={value}>
           {isIcon ? (
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
-              <span>{ignore && index !== 0 && handleIcon(label)}</span>
+              <span>{ignore && index === 0 ? null : handleIcon(label)}</span>
               <span>{label}</span>
             </div>
           ) : (

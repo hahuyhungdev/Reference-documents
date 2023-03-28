@@ -5,13 +5,19 @@ import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 export const HeatMap = ({ usersData, icons }) => {
+  const switchGridView = useSelector((state) => state.stateSwitch.switchGridView)
   const [instance, setInstance] = useState(null)
 
   const { locationData } = useSelector((state) => state.iotSocket)
-  console.log(locationData)
+  const urlMap = useSelector((state) => state.map.url)
+
+  // console.log(locationData)
   const heatmapRef = useRef(null)
   //let ctx = null
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
+
+  // console.log('urlMap', urlMap)
+
   // useEffect(() => {
   //   console.log('connect socket')
   //   socketInstance.socket.on('connect', () => {
@@ -32,7 +38,7 @@ export const HeatMap = ({ usersData, icons }) => {
 
   useEffect(() => {
     const { offsetWidth, offsetHeight } = heatmapRef.current
-    console.log(offsetWidth, offsetHeight)
+    // console.log(offsetWidth, offsetHeight)
     var heatmapInstance = h337.create({
       container: document.querySelector('.heatmap'),
       radius: 12,
@@ -42,7 +48,7 @@ export const HeatMap = ({ usersData, icons }) => {
       height: offsetHeight,
       width: offsetWidth
     })
-    console.log('render heatmap')
+    // console.log('render heatmap')
     setInstance(heatmapInstance)
   }, [])
   // handle change data when change time ago
@@ -58,47 +64,51 @@ export const HeatMap = ({ usersData, icons }) => {
   }, [usersData, instance, locationData])
 
   useEffect(() => {
+    console.log('switchGridView', switchGridView)
     const canvas = heatmapRef.current
     let ctx = canvas.getContext('2d')
+    if (switchGridView) {
+      const columnWidth = canvas.width / 10 // divide canvas width into 10 columns
+      const rowHeight = canvas.height / 10 // divide canvas width into 10 columnsclgh
 
-    const columnWidth = canvas.width / 10 // divide canvas width into 10 columns
-    const rowHeight = canvas.height / 10 // divide canvas width into 10 columnsclgh
+      // loop through each column and draw a line
+      for (let i = 0; i < 10; i++) {
+        const x = i * columnWidth // starting x coordinate of line
+        const y = 0 // starting y coordinate of line
+        const x1 = x // ending x coordinate of line
+        const y1 = canvas.height // ending y coordinate of line
+        ctx.beginPath()
+        ctx.moveTo(x, y)
+        ctx.lineTo(x1, y1)
+        ctx.strokeStyle = 'white'
+        ctx.lineWidth = 1
+        ctx.stroke()
+      }
 
-    // loop through each column and draw a line
-    for (let i = 0; i < 10; i++) {
-      const x = i * columnWidth // starting x coordinate of line
-      const y = 0 // starting y coordinate of line
-      const x1 = x // ending x coordinate of line
-      const y1 = canvas.height // ending y coordinate of line
-      ctx.beginPath()
-      ctx.moveTo(x, y)
-      ctx.lineTo(x1, y1)
-      ctx.strokeStyle = 'white'
-      ctx.lineWidth = 1
-      ctx.stroke()
+      // loop through each row and draw a line
+      for (let i = 0; i < 10; i++) {
+        const x = 0
+        const y = i * rowHeight
+        const x1 = canvas.width
+        const y1 = y
+        ctx.beginPath()
+        ctx.moveTo(x, y)
+        ctx.lineTo(x1, y1)
+        ctx.strokeStyle = 'white'
+        ctx.lineWidth = 1
+        ctx.stroke()
+      }
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
     }
-
-    // loop through each row and draw a line
-    for (let i = 0; i < 10; i++) {
-      const x = 0
-      const y = i * rowHeight
-      const x1 = canvas.width
-      const y1 = y
-      ctx.beginPath()
-      ctx.moveTo(x, y)
-      ctx.lineTo(x1, y1)
-      ctx.strokeStyle = 'white'
-      ctx.lineWidth = 1
-      ctx.stroke()
-    }
-  }, [])
+  }, [switchGridView])
 
   return (
     <div className='App-heatmap'>
       <div
         className='demo-wrapper'
         style={{
-          backgroundImage: `url(${Background})`
+          backgroundImage: urlMap === '' ? `url(${Background})` : `url(${urlMap})`
         }}
       >
         <canvas className='heatmap' ref={heatmapRef} />

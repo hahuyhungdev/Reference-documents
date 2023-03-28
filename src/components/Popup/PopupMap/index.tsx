@@ -2,65 +2,70 @@
 import './style.scss'
 
 import { UploadOutlined } from '@ant-design/icons'
-import { Button, Modal, Upload } from 'antd'
-import { message } from 'antd'
+import { Form, Modal, Upload } from 'antd'
+import { uploadMap } from 'apis/map.slice'
 import { ButtonCustom, FooterModal } from 'components'
-import React from 'react'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import { useAppDispatch } from 'reduxStore'
+import http from 'utils/http'
 
 interface PopupMapType {
   onOpen: boolean
-  onFinish: () => void
+  Finish: (values: any) => void
   onCancel: () => void
 }
 
-export const PopupMap = ({ onFinish, onOpen, onCancel }: PopupMapType) => {
-  const [selectedFile, setSelectedFile] = useState(null)
-  const dummyRequest = ({ file, onSuccess }: any) => {
-    setTimeout(() => {
-      onSuccess('ok')
-    }, 1000)
-  }
-  const onChange = (info: any) => {
-    switch (info.file.status) {
-      case 'uploading':
-        setSelectedFile(info.file)
-        break
-      case 'done':
-        setSelectedFile(info.file)
+export const PopupMap = ({ Finish, onOpen, onCancel }: PopupMapType) => {
+  const [file, setFile] = useState<File>()
 
-        toast.success('Upload successfully')
-        console.log(info.file)
-        break
+  const [form] = Form.useForm()
 
-      default:
-        setSelectedFile(null)
-        toast.error('Upload failed')
-        console.log(info.file)
-        break
+  const handleSubmit = () => {
+    console.log('file', file)
+    if (file) {
+      const form = new FormData()
+      form.append('image', file)
+      Finish(form)
     }
   }
+  // custom handle request upload
+  const customRequest = ({ file, onSuccess }: any) => {
+    console.log('file', file)
+    onSuccess('ok')
+    setFile(file)
+  }
+
   return (
     <div className='antCustom'>
       <Modal
+        closable={false}
         title='Upload Map'
         open={onOpen}
-        onOk={onFinish}
         centered
-        onCancel={onCancel}
-        footer={[<FooterModal key='footerCutom' onCancel={onCancel} onFinish={onFinish} />]}
+        footer={[<FooterModal key='footerCutom' onCancel={onCancel} onFinish={form.submit} />]}
       >
-        <div className='warningConfirm'>
-          <Upload onChange={onChange}>
-            <ButtonCustom style={{ width: '100%' }} icon={<UploadOutlined />}>
-              Click to Upload
-            </ButtonCustom>
-          </Upload>
-          {/* <br />
-          <h3>Current State Log</h3>
-          <pre>{JSON.stringify({ selectedFile, selectedFileList }, null, 2)}</pre> */}
-        </div>
+        <Form
+          form={form}
+          autoComplete='off'
+          onFinish={handleSubmit}
+          onFinishFailed={(error) => console.log(error)}
+          colon={false}
+        >
+          <Form.Item label='Upload Map' name={'upload'} rules={[{ required: true, message: 'Please upload file' }]}>
+            <Upload
+              accept='.png, .jpg, .jpeg'
+              maxCount={1}
+              listType='picture'
+              showUploadList={true}
+              customRequest={customRequest}
+            >
+              <ButtonCustom style={{ width: '100%' }} icon={<UploadOutlined />}>
+                Click to Upload
+              </ButtonCustom>
+            </Upload>
+          </Form.Item>
+        </Form>
       </Modal>
     </div>
   )

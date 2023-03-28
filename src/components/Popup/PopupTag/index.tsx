@@ -38,11 +38,11 @@ export const PopupTag = ({
   return (
     <div className='modalTag justify-items-start'>
       <Modal
+        maskClosable={false}
         title={title}
         open={onOpen}
         centered
         className={'modalTag justify-items-start'}
-        onCancel={onCancel}
         footer={[<FooterModal key='footerCutom' onCancel={onCancel} onFinish={form.submit} />]}
       >
         <Form

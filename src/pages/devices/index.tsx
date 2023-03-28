@@ -18,7 +18,7 @@ import { toast } from 'react-toastify'
 import { RootState, useAppDispatch } from 'reduxStore'
 import { CreateUpdateDeviceType, dataOptions } from 'types/common.type'
 
-import { addDevice, deleteManyDevices, exportToExcel, getDevicesList, searchDeviceByName } from './devices.slice'
+import { addDevice, deleteManyDevices, getDevicesList, searchDeviceByName } from './devices.slice'
 
 export const Devices = () => {
   const [isModalCreatVisible, setIsModalCreatVisible] = useState(false)
@@ -130,7 +130,7 @@ export const Devices = () => {
       .then((res) => {
         toast.success(res.message)
         setIsCheckUseData(false)
-        // setIsCheckUseData(false)
+        setIsModalConfirm(false)
       })
       .catch((err) => {
         console.log('err', err)
@@ -142,10 +142,6 @@ export const Devices = () => {
   // cancel deleteManyDevices
   const handleCancelDeleteMany = () => {
     setIsModalConfirm(false)
-  }
-
-  const handleExportToExcel = () => {
-    dispatch(exportToExcel({ deviceName: 'device_1' }))
   }
 
   // here, we use debounce to delay the onChange event
@@ -200,14 +196,10 @@ export const Devices = () => {
               >
                 <Input suffix={<SearchOutlined />} />
               </AutoComplete>
-              {/* <Search placeholder='input search text' onSearch={handleSearch} style={{ width: 200 }} /> */}
               <ButtonCustom isIcon icon={<IconUnion />} onClick={showCreatePopup}>
                 Create
               </ButtonCustom>
-              <ButtonCustom isIcon icon={<IconUnion />} onClick={handleExportToExcel}>
-                export
-              </ButtonCustom>
-              {listIds.length > 0 && (
+              {listIds.length > 1 && (
                 <ButtonCustom
                   className='bg-red-500'
                   onClick={() => {

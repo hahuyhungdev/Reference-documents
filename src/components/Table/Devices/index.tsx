@@ -49,19 +49,15 @@ export const initialDataRows: DeviceType = {
   typeId: undefined
 }
 const DevicesTable = ({ dataDevice, optionsTypes, optionsTags, deviceIds }: DevicesTableProps) => {
-  const [dataSource, setDataSources] = useState<DeviceType[]>([])
   const [selectedRowKeys, setSelectedRowKeys] = useState<number[]>([])
   const [dataRows, setDataRows] = useState<DeviceType>(initialDataRows)
-  const [ErrorForm, setErrorsForm] = useState(undefined) //
+  const [ErrorForm, setErrorsForm] = useState(undefined)
 
   const [isModalEdit, setIsModalEdit] = useState(false)
   const [isModalConfirm, setIsModalConfirm] = useState(false)
   const [length, setLength] = useState(0)
 
   const dispatch = useAppDispatch()
-  useEffect(() => {
-    setDataSources(dataDevice)
-  }, [dataDevice])
   useEffect(() => {
     setLength(optionsTags.length)
   }, [optionsTags])
@@ -263,7 +259,7 @@ const DevicesTable = ({ dataDevice, optionsTypes, optionsTags, deviceIds }: Devi
         rowKey='id'
         rowSelection={rowSelection as any | undefined}
         columns={columns as any}
-        dataSource={dataSource}
+        dataSource={dataDevice}
         scroll={{ y: 430 }}
         pagination={{
           position: ['bottomRight'],

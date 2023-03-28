@@ -53,7 +53,7 @@ export const PopupDevice = ({
           }}
           colon={false}
           initialValues={{
-            deviceName: onInitialValues?.deviceName,
+            name: onInitialValues?.deviceName,
             typeId: onInitialValues?.typeId,
             tagId: onInitialValues?.tagId,
             description: onInitialValues?.description
@@ -63,7 +63,7 @@ export const PopupDevice = ({
             <Form.Item
               hasFeedback
               label='Name device'
-              name={'deviceName'}
+              name={'name'}
               rules={[{ required: true, message: 'Name is required' }]}
             >
               <Input style={{ width: 230 }} placeholder='Please input' />
