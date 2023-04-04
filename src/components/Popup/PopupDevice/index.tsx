@@ -1,7 +1,7 @@
 import './style.scss'
 
 import { Form, Input, Modal, Space } from 'antd'
-import { FooterModal, SelectOption } from 'components'
+import { FooterModal, SelectOptions } from 'components'
 import { memo } from 'react'
 import { toast } from 'react-toastify'
 import { dataOptions, DeviceType } from 'types/common.type'
@@ -69,7 +69,7 @@ export const PopupDevice = ({
               <Input style={{ width: 230 }} placeholder='Please input' />
             </Form.Item>
             <Form.Item label='Type' name={'typeId'} rules={[{ required: true, message: 'Icon is required' }]}>
-              <SelectOption isIcon options={optionsTypes} placeholder='Select Type' />
+              <SelectOptions isIcon options={optionsTypes} placeholder='Select Type' />
             </Form.Item>
           </Space>
           <Form.Item
@@ -79,13 +79,9 @@ export const PopupDevice = ({
             name={'tagId'}
             rules={[{ required: true, message: 'Tag is required' }]}
           >
-            <SelectOption options={optionsTags} placeholder='Select Tag' />
+            <SelectOptions options={optionsTags} placeholder='Select Tag' />
           </Form.Item>
-          <Form.Item
-            label='Description'
-            name={'description'}
-            rules={[{ required: true, message: 'Description is required' }]}
-          >
+          <Form.Item label='Description' name={'description'}>
             <Input.TextArea showCount maxLength={100} placeholder='Autosize height based on content lines' />
           </Form.Item>
         </Form>

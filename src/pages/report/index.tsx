@@ -1,7 +1,7 @@
 import './style.scss'
 
 import { DatePicker } from 'antd'
-import { SelectOption } from 'components/Dropdown'
+import { SelectOptions } from 'components/SelectOptions'
 import moment from 'moment'
 import { getDevicesList } from 'pages/devices/devices.slice'
 import React, { useEffect, useState } from 'react'
@@ -56,7 +56,7 @@ export const Report = () => {
       </div>
       <div className='Devices'>
         <div className='span'>Devices</div>
-        <SelectOption onChange={onChangeOptions} placeholder='Select devices' options={optionsDevices} />
+        <SelectOptions onChange={onChangeOptions} placeholder='Select devices' options={optionsDevices} />
       </div>
       <ExcelExport startDate={startDate} endDate={endDate} name={device} />
     </div>

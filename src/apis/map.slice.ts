@@ -32,6 +32,17 @@ export const uploadMap = createAsyncThunk('map/uploadMap', async (body: FormData
     throw error
   }
 })
+// get map url
+export const getMap = createAsyncThunk('map/getMap', async (_, thunkAPI) => {
+  try {
+    const response = await http.get('maps/search')
+    return response.data
+  } catch (error: any) {
+    console.log(error)
+    throw error
+  }
+})
+
 const mapSlice = createSlice({
   name: 'map',
   initialState,
@@ -39,7 +50,10 @@ const mapSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(uploadMap.fulfilled, (state, action) => {
-        state.url = action.payload.url
+        state.url = action.payload.data.url
+      })
+      .addCase(getMap.fulfilled, (state, action) => {
+        state.url = action.payload.data.url
       })
       .addMatcher<PendingAction>(
         (action) => action.type.endsWith('/pending'),

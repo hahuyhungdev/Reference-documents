@@ -106,25 +106,33 @@ export const TagsTable = ({ dataTag, tagIds }: TagsTableType) => {
       title: 'Create at',
       dataIndex: 'createdDate',
       key: 'createdDate',
+      defaultSortOrder: 'descend',
+      sorter: (a: { createdDate: moment.MomentInput }, b: { createdDate: moment.MomentInput }) => {
+        console.log('a', a.createdDate)
+        return moment(a.createdDate).unix() - moment(b.createdDate).unix()
+      },
       render: (text: string) => {
         return (
           <span>{text === null ? <span>{text}</span> : <span>{moment(text).format('DD-MM-YYYY HH:mm:ss')}</span>}</span>
         )
       },
-      sorter: (a: { createAt: number }, b: { createAt: number }) => a.createAt - b.createAt,
-      width: 200
+      width: 120
     },
     {
       title: 'Update at',
       dataIndex: 'updatedDate',
       key: 'updatedDate',
-      render: (text: string) => {
+      defaultSortOrder: 'descend',
+      sorter: (a: { updatedDate: moment.MomentInput }, b: { updatedDate: moment.MomentInput }) => {
+        console.log('a', a.updatedDate)
+        return moment(a.updatedDate).unix() - moment(b.updatedDate).unix()
+      },
+      render: (text: number) => {
         return (
           <span>{text === null ? <span>{text}</span> : <span>{moment(text).format('DD-MM-YYYY HH:mm:ss')}</span>}</span>
         )
       },
-      sorter: (a: { updateAt: number }, b: { updateAt: number }) => a.updateAt - b.updateAt,
-      width: 200
+      width: 120
     },
     {
       title: 'Action',
@@ -151,7 +159,7 @@ export const TagsTable = ({ dataTag, tagIds }: TagsTableType) => {
         </div>
       ),
 
-      width: 120
+      width: 150
     }
   ]
   const rowSelection = {

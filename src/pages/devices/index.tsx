@@ -209,18 +209,17 @@ export const Devices = () => {
                   Delete All
                 </ButtonCustom>
               )}
-
-              {isModalConfirm && (
-                <ModalAlert
-                  onFinish={handleDeleteMany}
-                  onCancel={handleCancelDeleteMany}
-                  title='Are you sure delete all devices?'
-                  content='You can’t undo this action'
-                  onOpen={isModalConfirm}
-                />
-              )}
             </div>
           </header>
+          {isModalConfirm && (
+            <ModalAlert
+              onFinish={handleDeleteMany}
+              onCancel={handleCancelDeleteMany}
+              title='Are you sure delete all devices?'
+              content='You can’t undo this action'
+              onOpen={isModalConfirm}
+            />
+          )}
           {isModalCreatVisible && (
             <PopupDevice
               onFinish={handleCreate}

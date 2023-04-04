@@ -49,7 +49,6 @@ export const initialDataRows: DeviceType = {
   typeId: undefined
 }
 const DevicesTable = ({ dataDevice, optionsTypes, optionsTags, deviceIds }: DevicesTableProps) => {
-  const [selectedRowKeys, setSelectedRowKeys] = useState<number[]>([])
   const [dataRows, setDataRows] = useState<DeviceType>(initialDataRows)
   const [ErrorForm, setErrorsForm] = useState(undefined)
 
@@ -110,65 +109,99 @@ const DevicesTable = ({ dataDevice, optionsTypes, optionsTags, deviceIds }: Devi
       title: 'Icon',
       dataIndex: 'typeName',
       key: 'typeName',
-      render: (record: string) => <div className='icon'>{handleIcon(record)}</div>
-      // width: 60
+      render: (type: string) => <div className='icon'>{handleIcon(type)}</div>,
+      // filter icons
+      filters: [
+        {
+          text: <span className='icon'>{handleIcon('Forklift')}</span>,
+          value: 'Forklift'
+        },
+        {
+          text: <span className='icon'>{handleIcon('Group')}</span>,
+          value: 'Group'
+        },
+        {
+          text: <span className='icon'>{handleIcon('Person')}</span>,
+          value: 'Person'
+        }
+      ],
+      onFilter: (value: string, record: { typeName: string }) => record.typeName.indexOf(value) === 0,
+      width: 80
     },
     {
       title: 'Name device',
       dataIndex: 'deviceName',
       key: 'deviceName',
-      render: (text: string) => <span>{text}</span>
-      // width: 150
+      render: (text: string) => <span>{text}</span>,
+      width: 150
     },
     {
       title: 'Tag',
       dataIndex: 'tagName',
       key: 'tagName',
-      render: (text: string) => <span>{text}</span>
-      // width: 100
+      render: (text: string) => <span>{text}</span>,
+      width: 120
     },
     {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
-      render: (_: any, record: { status: boolean }) => (
-        <div
-          style={{
-            textAlign: 'center'
-          }}
-        >
-          <IconStatus fill={record?.status ? '#C17115' : '#8C8C8C'} />
+      filters: [
+        {
+          text: 'On',
+          value: 1
+        },
+        {
+          text: 'Off',
+          value: 0
+        }
+      ],
+      onFilter: (value: number, record: { status: number }) => record.status === value,
+      render: (_: any, record: { status: number }) => (
+        <div>
+          <IconStatus fill={record.status === 1 ? '#C17115' : '#8C8C8C'} />
         </div>
-      )
-      // width: 75
+      ),
+      width: 100
     },
     {
       title: 'Description',
       dataIndex: 'description',
       key: 'description',
-      render: (text: string) => <span>{text}</span>
+      render: (text: string) => <span>{text}</span>,
+      width: 200
     },
     {
       title: 'Created Date',
       dataIndex: 'createdDate',
       key: 'createdDate',
+      defaultSortOrder: 'descend',
+      sorter: (a: { createdDate: moment.MomentInput }, b: { createdDate: moment.MomentInput }) => {
+        console.log('a', a.createdDate)
+        return moment(a.createdDate).unix() - moment(b.createdDate).unix()
+      },
       render: (text: string) => {
         return (
           <span>{text === null ? <span>{text}</span> : <span>{moment(text).format('DD-MM-YYYY HH:mm:ss')}</span>}</span>
         )
-      }
-      // width: 170
+      },
+      width: 120
     },
     {
       title: 'Updated At',
       dataIndex: 'updatedDate',
       key: 'updatedDate',
-      render: (text: string) => {
+      defaultSortOrder: 'descend',
+      sorter: (a: { updatedDate: moment.MomentInput }, b: { updatedDate: moment.MomentInput }) => {
+        console.log('a', a.updatedDate)
+        return moment(a.updatedDate).unix() - moment(b.updatedDate).unix()
+      },
+      render: (text: number) => {
         return (
           <span>{text === null ? <span>{text}</span> : <span>{moment(text).format('DD-MM-YYYY HH:mm:ss')}</span>}</span>
         )
-      }
-      // width: 170
+      },
+      width: 120
     },
     {
       title: 'Action',
@@ -204,21 +237,14 @@ const DevicesTable = ({ dataDevice, optionsTypes, optionsTags, deviceIds }: Devi
           </span>
         </div>
       ),
-
-      width: 120
+      width: 150
     }
   ]
-  const onSelectChange = (newSelectedRowKeys: number[]) => {
-    setSelectedRowKeys(newSelectedRowKeys)
-    deviceIds(newSelectedRowKeys)
+  const onSelectChange = (selectedRowKeys: React.Key[], selectedRows: DeviceType[]) => {
+    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
 
+    deviceIds(selectedRowKeys as number[])
     // sentListId(newSelectedRowKeys)
-  }
-
-  const rowSelection = {
-    selectedRowKeys,
-    onChange: onSelectChange,
-    selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT]
   }
 
   return (
@@ -257,7 +283,12 @@ const DevicesTable = ({ dataDevice, optionsTypes, optionsTags, deviceIds }: Devi
           )
         }}
         rowKey='id'
-        rowSelection={rowSelection as any | undefined}
+        // rowSelection={rowSelection as any | undefined}
+        rowSelection={{
+          type: 'checkbox',
+          onChange: onSelectChange,
+          selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT]
+        }}
         columns={columns as any}
         dataSource={dataDevice}
         scroll={{ y: 430 }}

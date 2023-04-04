@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from 'reduxStore'
 
-import Map from './Map'
+// import Map from './Map'
 // type dataInitialFilter
 interface DataPoint {
   x: number
@@ -23,49 +23,47 @@ type typeIcons = {
   y: number
   image: string
 }
-export const SidebarLeft = (props: { onDates: number[] }) => {
+export const SidebarLeft = ({ onDates }: { onDates: number[] }) => {
   const [filterData, setFilterData] = useState<dataInitialFilterType[]>([])
   const [startDate, setStartDate] = useState(6)
-  const [imageUrl, setImageUrl] = useState<string[]>([])
   const [icons, setIcons] = useState<typeIcons[]>([])
 
   const usersData = useSelector((state: RootState) => state.heatmap.data)
 
   useEffect(() => {
-    if (props.onDates[0] === 0 && props.onDates[1] === 0) {
+    if (onDates[0] === 0 && onDates[1] === 0) {
       setStartDate(moment().subtract(6, 'hours').unix())
     } else {
-      setStartDate(props.onDates[0])
+      setStartDate(onDates[0])
     }
-  }, [props.onDates])
+  }, [onDates])
   // use effect handle log startdate changed
   useEffect(() => {
-    if (props.onDates[0] === 0 && props.onDates[1] === 0) {
+    if (onDates[0] === 0 && onDates[1] === 0) {
       // console.log(usersData.map((item) => item.logs).flat())
       setFilterData(usersData.filter((item) => item.date > startDate))
     } else {
-      setFilterData(usersData.filter((item) => item.date > startDate && item.date < props.onDates[1]))
+      setFilterData(usersData.filter((item) => item.date > startDate && item.date < onDates[1]))
     }
-  }, [startDate, usersData, props.onDates])
-  const generateRandomIcon = () => `https://picsum.photos/id/${Math.floor(Math.random() * 500)}/10/10`
+  }, [startDate, usersData, onDates])
+  const generateRandomIcon = () => `https://picsum.photos/id/${Math.floor(Math.random() * 500)}/5/5`
 
   const generateRandomCoordinates = () => ({
-    x: Math.floor(Math.random() * 1000), // Assumes canvas width is 800
-    y: Math.floor(Math.random() * 1000) // Assumes canvas height is 600
+    x: Math.floor(Math.random() * 500), // Assumes canvas width is 800
+    y: Math.floor(Math.random() * 500) // Assumes canvas height is 600
   })
-  const generateFakeData = (count: number) =>
-    Array.from({ length: count }, () => ({
-      ...generateRandomCoordinates(),
-      image: generateRandomIcon()
-    }))
+
   useEffect(() => {
+    const generateFakeData = (count: number) =>
+      Array.from({ length: count }, () => ({
+        ...generateRandomCoordinates(),
+        image: generateRandomIcon()
+      }))
     const data = generateFakeData(50)
-    const url = data.map((item) => item.image)
-    setImageUrl(url)
     setIcons(data)
   }, [])
   return (
-    <div className='dashboardMap'>
+    <div className='flex-grow'>
       {/* <button
         className='h-8 w-[3.3rem] cursor-pointer rounded-sm bg-red-400 p-1'
         onClick={() => {
@@ -74,8 +72,7 @@ export const SidebarLeft = (props: { onDates: number[] }) => {
       >
         change
       </button> */}
-      {/* <Map icons={icons} /> */}
-      <HeatMap usersData={filterData} icons={icons} />
+      <HeatMap icons={icons} />
     </div>
   )
 }

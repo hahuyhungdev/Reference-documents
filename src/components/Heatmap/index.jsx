@@ -1,107 +1,90 @@
+import { getMap } from 'apis/map.slice'
 import Background from 'assets/images/bg.png'
-import h337 from 'heatmap.js'
-import { setLocationData, setSocketConnected, socketInstance } from 'pages/dashboard/socket.slice'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-export const HeatMap = ({ usersData, icons }) => {
-  const switchGridView = useSelector((state) => state.stateSwitch.switchGridView)
-  const [instance, setInstance] = useState(null)
-
-  const { locationData } = useSelector((state) => state.iotSocket)
+export const HeatMap = ({ icons }) => {
+  const { switchGridView, switchAnchorView } = useSelector((state) => state.stateSwitch)
   const urlMap = useSelector((state) => state.map.url)
-
-  // console.log(locationData)
-  const heatmapRef = useRef(null)
-  //let ctx = null
+  console.log('urlMap', urlMap)
   const dispatch = useDispatch()
-
-  // console.log('urlMap', urlMap)
-
-  // useEffect(() => {
-  //   console.log('connect socket')
-  //   socketInstance.socket.on('connect', () => {
-  //     socketInstance.socket.emit('connect_mqtt', { id: 'hungban' })
-  //     dispatch(setSocketConnected(true))
-  //   })
-  //   socketInstance.socket.on('MQTT_LOCATION_RESPONSE', (data) => {
-  //     dispatch(setLocationData(data))
-  //   })
-  //   socketInstance.socket.on('error', (error) => {
-  //     console.error('Socket connection error:', error)
-  //     dispatch(setSocketConnected(false))
-  //   })
-  //   return () => {
-  //     socketInstance.close(false)
-  //   }
-  // }, [dispatch])
-
   useEffect(() => {
-    const { offsetWidth, offsetHeight } = heatmapRef.current
-    // console.log(offsetWidth, offsetHeight)
-    var heatmapInstance = h337.create({
-      container: document.querySelector('.heatmap'),
-      radius: 12,
-      maxOpacity: 0.5,
-      minOpacity: 0,
-      blur: 1,
-      height: offsetHeight,
-      width: offsetWidth
-    })
-    // console.log('render heatmap')
-    setInstance(heatmapInstance)
-  }, [])
-  // handle change data when change time ago
-  useEffect(() => {
-    // instance && instance.addData(locationData)
-    instance &&
-      instance.setData({
-        max: 1000,
-        min: -1000,
-        data: locationData
-      })
-    // instance && instance.setData({ max: 100, min: 0, data: usersData.map((item) => item.logs).flat() })
-  }, [usersData, instance, locationData])
+    const promise = dispatch(getMap())
+    return () => {
+      promise.abort()
+    }
+  }, [dispatch])
 
-  useEffect(() => {
-    console.log('switchGridView', switchGridView)
+  const heatmapRef = useRef(null)
+
+  const shouldDraw = switchGridView || switchAnchorView
+  console.log('shouldDraw', shouldDraw)
+
+  // Draw the grid lines on the canvas
+  const drawGrid = () => {
     const canvas = heatmapRef.current
+    const ctx = canvas.getContext('2d')
+    const columnWidth = canvas.width / 10 // divide canvas width into 10 columns
+    const rowHeight = canvas.height / 10 // divide canvas width into 10 columns
+
+    // loop through each column and draw a line
+    for (let i = 0; i < 10; i++) {
+      const x = i * columnWidth // starting x coordinate of line
+      const y = 0 // starting y coordinate of line
+      const x1 = x // ending x coordinate of line
+      const y1 = canvas.height // ending y coordinate of line
+      ctx.beginPath()
+      ctx.moveTo(x, y)
+      ctx.lineTo(x1, y1)
+      ctx.strokeStyle = 'white'
+      ctx.lineWidth = 1
+      ctx.stroke()
+    }
+    // loop through each row and draw a line
+    for (let i = 0; i < 10; i++) {
+      const x = 0
+      const y = i * rowHeight
+      const x1 = canvas.width
+      const y1 = y
+      ctx.beginPath()
+      ctx.moveTo(x, y)
+      ctx.lineTo(x1, y1)
+      ctx.strokeStyle = 'white'
+      ctx.lineWidth = 1
+      ctx.stroke()
+    }
+  }
+
+  useEffect(() => {
+    const canvas = heatmapRef.current
+    const { offsetWidth, offsetHeight } = canvas
     let ctx = canvas.getContext('2d')
-    if (switchGridView) {
-      const columnWidth = canvas.width / 10 // divide canvas width into 10 columns
-      const rowHeight = canvas.height / 10 // divide canvas width into 10 columnsclgh
-
-      // loop through each column and draw a line
-      for (let i = 0; i < 10; i++) {
-        const x = i * columnWidth // starting x coordinate of line
-        const y = 0 // starting y coordinate of line
-        const x1 = x // ending x coordinate of line
-        const y1 = canvas.height // ending y coordinate of line
-        ctx.beginPath()
-        ctx.moveTo(x, y)
-        ctx.lineTo(x1, y1)
-        ctx.strokeStyle = 'white'
-        ctx.lineWidth = 1
-        ctx.stroke()
+    const drawImages = () => {
+      const ctx = heatmapRef.current.getContext('2d')
+      icons.forEach(({ x, y, image }) => {
+        const iconImage = new Image()
+        iconImage.src = image
+        iconImage.onload = () => {
+          ctx.drawImage(iconImage, x, y, iconImage.width, iconImage.height)
+        }
+      })
+    }
+    if (shouldDraw) {
+      if (switchGridView) {
+        drawGrid()
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
       }
-
-      // loop through each row and draw a line
-      for (let i = 0; i < 10; i++) {
-        const x = 0
-        const y = i * rowHeight
-        const x1 = canvas.width
-        const y1 = y
-        ctx.beginPath()
-        ctx.moveTo(x, y)
-        ctx.lineTo(x1, y1)
-        ctx.strokeStyle = 'white'
-        ctx.lineWidth = 1
-        ctx.stroke()
+      if (switchAnchorView) {
+        drawImages()
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        drawGrid()
       }
     } else {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
     }
-  }, [switchGridView])
+  }, [switchGridView, icons, shouldDraw, switchAnchorView])
 
   return (
     <div className='App-heatmap'>
@@ -112,7 +95,6 @@ export const HeatMap = ({ usersData, icons }) => {
         }}
       >
         <canvas className='heatmap' ref={heatmapRef} />
-        {/* <div className='tooltip'></div> */}
       </div>
     </div>
   )

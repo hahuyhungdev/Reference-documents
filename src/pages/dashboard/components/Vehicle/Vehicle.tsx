@@ -2,30 +2,28 @@ import './style.scss'
 
 import { Select, Space, Table } from 'antd'
 import { getTypesList } from 'apis/types.slice'
-import { SelectOption } from 'components'
+import { SelectOptions } from 'components'
 import { IconStatus } from 'components/Icons'
 import { memo, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState, useAppDispatch } from 'reduxStore'
 import { DeviceType } from 'types/common.type'
+import { useVT } from 'virtualizedtableforantd4'
 
 const columns = [
   {
-    title: 'Name Device',
+    title: <span className='whitespace-normal'>Name Device</span>,
     dataIndex: 'deviceName',
     key: 'deviceName',
-    render: (text: string) => <span>{text}</span>
+    render: (text: string) => <span>{text}</span>,
+    width: 120
   },
   {
-    title: <div style={{ textAlign: 'right' }}>Status</div>,
+    // title: <div style={{ textAlign: 'right' }}>Status</div>,
+    title: 'Status',
     dataIndex: 'status',
     key: 'status',
-    render: (_: any, record: { status: any }) => (
-      <Space size='middle'>
-        <IconStatus fill={record.status ? '#C17115' : '#8C8C8C'} />
-      </Space>
-    ),
-    width: 75
+    render: (_: any, record: { status: number }) => <IconStatus fill={record.status === 1 ? '#C17115' : '#8C8C8C'} />
   }
 ]
 interface ITableVehicle {
@@ -36,6 +34,7 @@ interface ITableVehicle {
 export const TableVehicle = memo(({ devicesData, onIsVisableLineTrace }: ITableVehicle) => {
   const [valueType, setValueType] = useState('All')
   const typeList = useSelector((state: RootState) => state.type.typesList)
+  const [vt, set_components] = useVT(() => ({ scroll: { y: 300 } }), [])
   const dispatch = useAppDispatch()
   useEffect(() => {
     const promise = dispatch(getTypesList())
@@ -63,10 +62,12 @@ export const TableVehicle = memo(({ devicesData, onIsVisableLineTrace }: ITableV
     return item.typeId?.toString() === valueType.toString()
   })
 
+  const onSelectChange = (selectedRowKeys: React.Key[], selectedRows: DeviceType[]) => {
+    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
+  }
   return (
     <div className='tableVahicle'>
-      {/* <Select options={dataSelect} placeholder='Sort by type' onChange={onFilterChange} /> */}
-      <SelectOption
+      <SelectOptions
         defaultValue={valueType}
         ignore
         isIcon
@@ -75,11 +76,17 @@ export const TableVehicle = memo(({ devicesData, onIsVisableLineTrace }: ITableV
         onChange={onFilterChange}
       />
       <Table
+        components={vt}
+        scroll={{ y: onIsVisableLineTrace ? 150 : 260 }}
+        rowSelection={{
+          type: 'checkbox',
+          onChange: onSelectChange,
+          selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT]
+        }}
         rowKey={(record) => record.id}
         columns={columns}
         dataSource={dataFilter}
         pagination={false}
-        scroll={{ y: onIsVisableLineTrace ? 150 : 270 }}
       />
     </div>
   )

@@ -2,13 +2,14 @@ import '../../style.scss'
 
 import { UploadOutlined } from '@ant-design/icons'
 import { DatePicker, RadioChangeEvent, Switch } from 'antd'
-import { uploadMap } from 'apis/map.slice'
+import { getMap, uploadMap } from 'apis/map.slice'
 import { ButtonCustom, ButtonGroup, PopupMap } from 'components'
 import moment from 'moment'
 import { getDevicesList } from 'pages/devices/devices.slice'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import { FixedSizeList as List } from 'react-window'
 import { RootState, useAppDispatch } from 'reduxStore'
 
 import { setSwitchAnchorView, setSwitchGridView, setSwitchHistorical } from '../../stateSwitch.slice'
@@ -100,17 +101,18 @@ export const SidebarRight = ({ sendDates }: sidebarRightProps) => {
     // console.log('data', data)
     dispatch(uploadMap(data))
       .unwrap()
-      .then((res) => {
+      .then((res: any) => {
         console.log('res', res)
         toast.success('Upload map success')
       })
-      .catch((err) => {
+      .catch((err: any) => {
+        toast.error('Upload map fail')
         console.log('err', err)
       })
   }
 
   return (
-    <div className='toolDasdboard'>
+    <div className='toolDasdboard w-[280px] flex-shrink-0 bg-white p-5'>
       <div className='configuration'>
         <div className='titleTool'>MAP CONFIGURATION</div>
 
@@ -174,6 +176,11 @@ export const SidebarRight = ({ sendDates }: sidebarRightProps) => {
       <div className='vehicleList'>
         <div className='titleVehicle'>VEHICLE LIST</div>
         <TableVehicle devicesData={devicesData} onIsVisableLineTrace={isVisableLineTrace} />
+        {/* 
+        <List className='list' height={300} itemCount={listArr.length} itemSize={35} width={250}>
+          {renderRow}
+        </List> */}
+        {/* <VirtualizedList /> */}
       </div>
     </div>
   )

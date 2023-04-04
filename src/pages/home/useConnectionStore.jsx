@@ -1,9 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { addMessage, setId, setOpen, setPort } from './serial.slice'
+import {
+  addMessage,
+  setId,
+  setOpen,
+  setPhysicallyConnected,
+  setPort,
+  setProduct,
+  setReader,
+  setVendor
+} from './serial.slice'
 const hex = (i) => i && i.toString(16).padStart(4, 0).toLowerCase()
 
 async function* makeTextFileLineIterator(fileURL) {
@@ -45,7 +54,7 @@ const getUsbInfo = async (vid, pid) => {
     vid = info.vid = hex(i.usbVendorId)
     pid = info.pid = hex(i.usbProductId)
   }
-  console.log(`searching for ${vid}:${pid}`)
+  //console.log(`searching for ${vid}:${pid}`)
   for await (let line of makeTextFileLineIterator('/usb-ids.txt')) {
     if (line === '# List of known device classes, subclasses and protocols') {
       break
@@ -72,7 +81,7 @@ const getUsbInfo = async (vid, pid) => {
       }
     }
   }
-  console.log(`unable to find ${vid}:${pid}`)
+  //console.log(`unable to find ${vid}:${pid}`)
   return info
 }
 
@@ -85,7 +94,10 @@ const decoder = new TextDecoder()
 function useConnectionStore() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { serialPort, id, open } = useSelector((state) => state.serial)
+  const { serialPort, id, open, _reader } = useSelector((state) => state.serial)
+  useEffect(() => {
+    console.log('_reader', _reader)
+  }, [_reader])
   const ConnectionStore = {
     id: undefined,
     vendor: undefined,
@@ -111,14 +123,15 @@ function useConnectionStore() {
         if (!navigator.serial) return false
         const port = await navigator.serial.requestPort()
         const info = await getUsbInfo(port)
-        // console.log('info', info, port.getInfo())
+        // //console.log('info', info, port.getInfo())
         // window.location.search = `?vid=${info.vid}&pid=${info.pid}`
-        // console.log(info.vid, info.pid)
+        // //console.log(info.vid, info.pid)
         navigate(`?vid=${info.vid}&pid=${info.pid}`)
         return true
       } catch (e) {}
     },
     async init(vid, pid) {
+      console.log('init', vid, pid)
       const ports = await navigator.serial.getPorts()
       const id = vid + ':' + pid
       dispatch(setId(id))
@@ -133,14 +146,21 @@ function useConnectionStore() {
       // navigate('/home')
       // window.location.reload()
       this.id = id
+      dispatch(setId(id))
       const info = await getUsbInfo(this.port)
+      dispatch(setVendor(info.vendor))
+      dispatch(setProduct(info.product))
+      dispatch(setPhysicallyConnected(true))
       this.vendor = info.vendor
       this.product = info.product
       this.physicallyConnected = true
 
       // notification for a USB device getting physically connected
       const onconnect = (e) => {
-        console.log(id + 'device connected', e)
+        //console.log(id + 'device connected', e)
+
+        dispatch(setPort(e.target))
+        dispatch(setPhysicallyConnected(true))
         this.port = e.target
         this.physicallyConnected = true
       }
@@ -148,21 +168,20 @@ function useConnectionStore() {
 
       // notification for a USB device getting physically disconnected
       const ondisconnect = (e) => {
-        console.log(id + ' disconnect')
+        //console.log(id + ' disconnect')
         this.physicallyConnected = false
         this.open = false
-        setOpen(false)
+        dispatch(setOpen(false))
+        dispatch(setPhysicallyConnected(false))
       }
       navigator.serial.addEventListener('disconnect', ondisconnect)
-      console.log(id + ' initialized')
+      //console.log(id + ' initialized')
     },
     // write arrow function to avoid binding
     async connect() {
-      if (!serialPort) {
-        console.log('no serial port')
-        return
-      }
-      console.log(id + ': opening', this)
+      console.log('status', serialPort)
+      if (!serialPort) return
+      //console.log(id + ': opening', this)
       try {
         await serialPort.open({
           baudRate: 115200,
@@ -172,35 +191,41 @@ function useConnectionStore() {
           parity: 'none',
           stopBits: 1
         })
-        console.log('readable', Boolean(serialPort.readable) === true)
-        dispatch(setOpen(Boolean(serialPort.readable)))
-        console.log(id + ': opened')
+        //console.log('readable', Boolean(serialPort.readable) === true)
+        console.log('!!serialPort.readable', !!serialPort.readable)
+        this.open = !!serialPort.readable
+        dispatch(setOpen(!!serialPort.readable))
+        //console.log(id + ': opened')
         // const { clearToSend, dataCarrierDetect, dataSetReady, ringIndicator} = await this.port.getSignals()
-        // console.log({ clearToSend, dataCarrierDetect, dataSetReady, ringIndicator})
+        // //console.log({ clearToSend, dataCarrierDetect, dataSetReady, ringIndicator})
         this.monitor()
       } catch (e) {
-        console.log(e)
+        //console.log(e)
         window.alert(e.message)
       }
     },
     async monitor() {
       console.log('monitor()')
-      console.log('open', open, serialPort)
-      while (Boolean(serialPort.readable) === true && serialPort?.readable) {
+      console.log('this.open', this.open)
+      while (this.open && this.port?.readable) {
+        console.log('monitoring...')
         // this.open = true
         dispatch(setOpen(true))
         // const reader = this.port.readable.getReader()
         const reader = serialPort.readable.getReader()
-        this._reader = reader
         console.log('reader', reader)
+        this._reader = reader
+        dispatch(setReader(reader))
+        //console.log('reader', reader)
         try {
-          while (Boolean(serialPort.readable) === true) {
-            console.log('reading...')
+          while (this.open) {
+            //console.log('reading...')
             const { value, done } = await reader.read()
-            console.log(' reader.read() complete:', value, done)
+            //console.log(' reader.read() complete:', value, done)
             if (done) {
               // |reader| has been canceled.
               this.open = false
+              dispatch(setOpen(false))
               break
             }
             const decoded = decoder.decode(value)
@@ -217,20 +242,22 @@ function useConnectionStore() {
     },
     async write(data) {
       console.log('write', data)
-      if (this.port?.writable) {
-        const writer = this.port.writable.getWriter()
-        const test = await writer.write(encoder.encode(data))
-        console.log('write complete1', test)
-
+      if (serialPort.writable) {
+        const writer = serialPort.writable.getWriter()
+        await writer.write(encoder.encode(data))
         writer.releaseLock()
       }
     },
     async close() {
-      if (this._reader) {
-        await this._reader.cancel()
+      console.log(_reader, id, open)
+      navigate('/home')
+      if (_reader && open) {
+        await _reader.cancel()
+        await serialPort.writable.getWriter().close()
       }
-      this.port.close()
-      this.open = false
+
+      serialPort.close()
+      dispatch(setOpen(false))
     }
   }
   return ConnectionStore

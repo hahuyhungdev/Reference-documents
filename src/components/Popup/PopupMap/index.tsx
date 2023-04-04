@@ -3,12 +3,8 @@ import './style.scss'
 
 import { UploadOutlined } from '@ant-design/icons'
 import { Form, Modal, Upload } from 'antd'
-import { uploadMap } from 'apis/map.slice'
 import { ButtonCustom, FooterModal } from 'components'
 import { useState } from 'react'
-import { toast } from 'react-toastify'
-import { useAppDispatch } from 'reduxStore'
-import http from 'utils/http'
 
 interface PopupMapType {
   onOpen: boolean

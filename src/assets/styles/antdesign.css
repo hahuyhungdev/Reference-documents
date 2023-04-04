@@ -66,5 +66,26 @@
 .ant-select-open .ant-select-arrow {
   transform: rotate(180deg);
 }
-
+.ant-pagination-item-active,
+.ant-pagination-item:hover,
+.ant-pagination-item-active:hover {
+  border-color: #c17115 !important;
+}
+.ant-pagination-item-active a,
+.ant-pagination-item:hover a,
+.ant-pagination-item-active:hover a {
+  color: #c17115 !important;
+}
+.ant-input-affix-wrapper-focused,
+.ant-input-affix-wrapper:focus {
+  border-color: #c17115 !important;
+  box-shadow: 0 0 0 2px rgba(168, 95, 10, 0.2) !important;
+}
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+  border-color: #c17115 !important;
+}
+.ant-dropdown-menu-title-content {
+  display: flex !important;
+  align-items: center;
+}
 /* end custon antd css */

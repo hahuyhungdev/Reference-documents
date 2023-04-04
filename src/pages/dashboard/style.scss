@@ -13,26 +13,7 @@
 }
 .dashboard {
   display: flex;
-  .dashboardMap {
-    width: 100%;
-    height: calc(100vh - 64px);
-    // height: 100%;
-    overflow: hidden;
-    justify-content: center;
-    display: flex;
-    // background-image: url('./background.png');
-    // background-repeat: no-repeat;
-    // background-size: cover;
-    // background-position: center;
-    // img {
-    //   height: 100%;
-    // }
-  }
   .toolDasdboard {
-    max-width: 280px;
-    background: #ffffff;
-    overflow: hidden;
-    padding: 20px;
     .configuration {
       .ant-switch-checked {
         background-color: #a85f0a;
