@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -95,9 +95,6 @@ function useConnectionStore() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { serialPort, id, open, _reader } = useSelector((state) => state.serial)
-  useEffect(() => {
-    console.log('_reader', _reader)
-  }, [_reader])
   const ConnectionStore = {
     id: undefined,
     vendor: undefined,
@@ -131,7 +128,6 @@ function useConnectionStore() {
       } catch (e) {}
     },
     async init(vid, pid) {
-      console.log('init', vid, pid)
       const ports = await navigator.serial.getPorts()
       const id = vid + ':' + pid
       dispatch(setId(id))
@@ -158,7 +154,6 @@ function useConnectionStore() {
       // notification for a USB device getting physically connected
       const onconnect = (e) => {
         //console.log(id + 'device connected', e)
-
         dispatch(setPort(e.target))
         dispatch(setPhysicallyConnected(true))
         this.port = e.target
@@ -171,15 +166,14 @@ function useConnectionStore() {
         //console.log(id + ' disconnect')
         this.physicallyConnected = false
         this.open = false
-        dispatch(setOpen(false))
         dispatch(setPhysicallyConnected(false))
+        dispatch(setOpen(false))
       }
       navigator.serial.addEventListener('disconnect', ondisconnect)
       //console.log(id + ' initialized')
     },
     // write arrow function to avoid binding
     async connect() {
-      console.log('status', serialPort)
       if (!serialPort) return
       //console.log(id + ': opening', this)
       try {
@@ -192,9 +186,8 @@ function useConnectionStore() {
           stopBits: 1
         })
         //console.log('readable', Boolean(serialPort.readable) === true)
-        console.log('!!serialPort.readable', !!serialPort.readable)
         this.open = !!serialPort.readable
-        dispatch(setOpen(!!serialPort.readable))
+        console.log('!!serialPort.readable', !!serialPort.readable)
         //console.log(id + ': opened')
         // const { clearToSend, dataCarrierDetect, dataSetReady, ringIndicator} = await this.port.getSignals()
         // //console.log({ clearToSend, dataCarrierDetect, dataSetReady, ringIndicator})
@@ -205,15 +198,13 @@ function useConnectionStore() {
       }
     },
     async monitor() {
-      console.log('monitor()')
-      console.log('this.open', this.open)
-      while (this.open && this.port?.readable) {
-        console.log('monitoring...')
+      //console.log('monitor()')
+      console.log('open', this.open, open, serialPort)
+      while (this.open && serialPort?.readable) {
         // this.open = true
         dispatch(setOpen(true))
         // const reader = this.port.readable.getReader()
         const reader = serialPort.readable.getReader()
-        console.log('reader', reader)
         this._reader = reader
         dispatch(setReader(reader))
         //console.log('reader', reader)
@@ -249,13 +240,11 @@ function useConnectionStore() {
       }
     },
     async close() {
-      console.log(_reader, id, open)
       navigate('/home')
-      if (_reader && open) {
+      if (_reader) {
         await _reader.cancel()
         await serialPort.writable.getWriter().close()
       }
-
       serialPort.close()
       dispatch(setOpen(false))
     }

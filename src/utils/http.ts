@@ -10,7 +10,7 @@ class Http {
   constructor() {
     this.accessToken = getAccessTokenFromLS()
     this.instance = axios.create({
-      baseURL: 'http://192.168.1.164:3000/api/v1/',
+      baseURL: 'http://192.168.1.164:3200/api/v1/',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + this.accessToken

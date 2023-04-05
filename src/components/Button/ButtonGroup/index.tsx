@@ -1,7 +1,6 @@
-// @ts-nocheck
 import './style.scss'
 
-import { Radio } from 'antd'
+import { Radio, RadioChangeEvent } from 'antd'
 import { FC } from 'react'
 
 interface ButtonGroupType {

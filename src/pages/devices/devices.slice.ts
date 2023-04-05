@@ -1,13 +1,12 @@
-// @ts-nocheck
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { CreateUpdateDeviceType, DeviceType } from 'types/common.type'
+import { AsyncThunk, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { CreateUpdateDeviceType, DeviceType, TagType } from 'types/common.type'
 import { SuccessResponse } from 'types/utils.type'
 import http from 'utils/http'
 
 interface DevicesState {
   devicesList: DeviceType[]
   devicesListSearch: DeviceType[]
-  deivcesListExport: any
+  deivcesListExport: any[]
   devicesListLoading: boolean
   currentDeviceId: string | undefined
   isDuplicate: boolean
@@ -16,7 +15,7 @@ interface DevicesState {
 const initialState: DevicesState = {
   devicesList: [],
   devicesListSearch: [],
-  deivcesExport: [],
+  deivcesListExport: [],
   devicesListLoading: false,
   currentDeviceId: undefined,
   isDuplicate: false
@@ -99,18 +98,6 @@ export const deleteDeviceById = createAsyncThunk('devices/deleteDeviceById', asy
   }
 })
 
-// function searchDeviceByName(name: string)
-export const searchDeviceByName = createAsyncThunk('devices/searchDeviceByName', async (name: string, thunkAPI) => {
-  try {
-    const response = await http.get<SuccessResponse<DeviceType[]>>(`/devices/search?name=${name}`, {
-      signal: thunkAPI.signal
-    })
-    return response.data
-  } catch (error: any) {
-    throw error
-  }
-})
-
 // function to delete many devices. body passed to server is array of id like {tagIds: [1,2,3]}
 export const deleteManyDevices = createAsyncThunk(
   'devices/deleteManyDevices',
@@ -129,6 +116,17 @@ export const deleteManyDevices = createAsyncThunk(
     }
   }
 )
+// function searchDeviceByName(name: string)
+export const searchDeviceByName = createAsyncThunk('devices/searchDeviceByName', async (name: string, thunkAPI) => {
+  try {
+    const response = await http.get<SuccessResponse<DeviceType[]>>(`/devices/search?name=${name}`, {
+      signal: thunkAPI.signal
+    })
+    return response.data
+  } catch (error: any) {
+    throw error
+  }
+})
 
 // function export to excel
 export const exportToExcel = createAsyncThunk(
@@ -174,9 +172,10 @@ const devicesSlice = createSlice({
         state.devicesList.push(action.payload.data)
       })
       .addCase(updateDeviceById.fulfilled, (state, action) => {
-        const deviceIndex = state.devicesList.findIndex((device) => device.id === action.payload.data.id)
+        const idDevice = action.meta.arg.deviceId
+        const deviceIndex = state.devicesList.findIndex((device) => device.id === idDevice)
         if (deviceIndex !== -1) {
-          state.devicesList[deviceIndex] = action.payload.data
+          state.devicesList[deviceIndex] = action.payload.data as any
         }
       })
       .addCase(deleteDeviceById.fulfilled, (state, action) => {
@@ -189,7 +188,7 @@ const devicesSlice = createSlice({
       .addCase(deleteManyDevices.fulfilled, (state, action) => {
         const deviceIds = action.meta.arg
         state.devicesList = state.devicesList.filter((device) => {
-          return !deviceIds.includes(device.id as any)
+          return !deviceIds.includes(device.id)
         })
       })
       .addCase(searchDeviceByName.fulfilled, (state, action) => {

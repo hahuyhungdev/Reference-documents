@@ -39,9 +39,9 @@ interface DevicesTableProps {
 export const initialDataRows: DeviceType = {
   id: 0,
   deviceName: '',
-  description: null,
-  createdDate: null,
-  updatedDate: null,
+  description: '',
+  createdDate: '',
+  updatedDate: '',
   tagName: '',
   status: 1,
   typeName: '',
@@ -62,16 +62,13 @@ const DevicesTable = ({ dataDevice, optionsTypes, optionsTags, deviceIds }: Devi
   }, [optionsTags])
 
   const handleCancel = () => {
-    console.log('Cancel')
     setIsModalConfirm(false)
     setIsModalEdit(false)
-    console.log('lengt', 'onoptionsTags', length, optionsTags.length)
     if (length !== optionsTags.length) optionsTags.shift()
   }
 
   // func handle delete
   const handleDelete = () => {
-    console.log('dataRows', dataRows)
     dispatch(deleteDeviceById(dataRows.id))
     setIsModalConfirm(false)
     toast.success('Delete success')
@@ -102,8 +99,20 @@ const DevicesTable = ({ dataDevice, optionsTypes, optionsTags, deviceIds }: Devi
     if (length !== optionsTags.length) optionsTags.shift()
   }
 
-  // console.log('handleoptionsTags', optionsTags, handleoptionsTags)
-  // console.log('optionsTags', optionsTags)
+  const handleEditDevice = (record: DeviceType) => {
+    // Check if the tag is already present in the optionsTags array
+    const tagExists = optionsTags.some((tag) => {
+      return tag.label === record.tagName && tag.value === record.tagId
+    })
+    if (!tagExists) {
+      optionsTags.unshift({
+        label: record.tagName,
+        value: record.tagId
+      })
+    }
+    setIsModalEdit(true)
+    setDataRows(record)
+  }
   const columns = [
     {
       title: 'Icon',
@@ -177,7 +186,6 @@ const DevicesTable = ({ dataDevice, optionsTypes, optionsTags, deviceIds }: Devi
       key: 'createdDate',
       defaultSortOrder: 'descend',
       sorter: (a: { createdDate: moment.MomentInput }, b: { createdDate: moment.MomentInput }) => {
-        console.log('a', a.createdDate)
         return moment(a.createdDate).unix() - moment(b.createdDate).unix()
       },
       render: (text: string) => {
@@ -193,7 +201,6 @@ const DevicesTable = ({ dataDevice, optionsTypes, optionsTags, deviceIds }: Devi
       key: 'updatedDate',
       defaultSortOrder: 'descend',
       sorter: (a: { updatedDate: moment.MomentInput }, b: { updatedDate: moment.MomentInput }) => {
-        console.log('a', a.updatedDate)
         return moment(a.updatedDate).unix() - moment(b.updatedDate).unix()
       },
       render: (text: number) => {
@@ -204,28 +211,13 @@ const DevicesTable = ({ dataDevice, optionsTypes, optionsTags, deviceIds }: Devi
       width: 120
     },
     {
-      title: 'Action',
+      title: <div className='text-center'>Action</div>,
       dataIndex: 'Action',
       key: 'Action',
       render: (_: any, record: DeviceType) => (
         <div className='action' style={{ display: 'flex', justifyContent: 'center', columnGap: '16px' }}>
-          <span
-            onClick={() => {
-              // Check if the tag is already present in the optionsTags array
-              const tagExists = optionsTags.some((tag) => {
-                return tag.label === record.tagName && tag.value === record.tagId
-              })
-              if (!tagExists) {
-                optionsTags.unshift({
-                  label: record.tagName,
-                  value: record.tagId
-                })
-              }
-              setIsModalEdit(true)
-              setDataRows(record)
-            }}
-          >
-            Edit
+          <span onClick={() => handleEditDevice(record)}>
+            <div className='w-10 p-2'>Edit</div>
           </span>
           <span
             onClick={() => {
@@ -233,7 +225,7 @@ const DevicesTable = ({ dataDevice, optionsTypes, optionsTags, deviceIds }: Devi
               setDataRows(record)
             }}
           >
-            Delete
+            <div className='w-15 p-2'>Delete</div>
           </span>
         </div>
       ),
@@ -242,7 +234,6 @@ const DevicesTable = ({ dataDevice, optionsTypes, optionsTags, deviceIds }: Devi
   ]
   const onSelectChange = (selectedRowKeys: React.Key[], selectedRows: DeviceType[]) => {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
-
     deviceIds(selectedRowKeys as number[])
     // sentListId(newSelectedRowKeys)
   }

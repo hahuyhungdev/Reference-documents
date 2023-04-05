@@ -1,11 +1,10 @@
-// @ts-nocheck
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { CreateUpdateTypeType, TypeType } from 'types/common.type'
+import { AsyncThunk, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { IType, UpdateTagType } from 'types/common.type'
 import { SuccessResponse } from 'types/utils.type'
 import http from 'utils/http'
 
 interface TypesState {
-  typesList: TypeType[]
+  typesList: IType[]
   typesListLoading: boolean
   currentTypeId: string | undefined
 }
@@ -23,7 +22,7 @@ type FulfilledAction = ReturnType<GenericAsyncThunk['fulfilled']>
 
 export const getTypesList = createAsyncThunk('types/getTypesList', async (_, thunkAPI) => {
   try {
-    const response = await http.get<SuccessResponse<TypeType[]>>('/types', {
+    const response = await http.get<SuccessResponse<IType[]>>('/types', {
       signal: thunkAPI.signal
     })
     return response.data
@@ -34,7 +33,7 @@ export const getTypesList = createAsyncThunk('types/getTypesList', async (_, thu
 // func to get type by id
 export const getTypeById = createAsyncThunk('types/getTypeById', async (typeId: string, thunkAPI) => {
   try {
-    const response = await http.get<SuccessResponse<TypeType>>(`/types/${typeId}`, {
+    const response = await http.get<SuccessResponse<IType>>(`/types/${typeId}`, {
       signal: thunkAPI.signal
     })
     return response.data
@@ -45,7 +44,7 @@ export const getTypeById = createAsyncThunk('types/getTypeById', async (typeId: 
 // func to add new type
 export const addType = createAsyncThunk('types/addType', async (type: { name: string }, thunkAPI) => {
   try {
-    const response = await http.post<SuccessResponse<TypeType>>('/types', type, {
+    const response = await http.post<SuccessResponse<IType>>('/types', type, {
       signal: thunkAPI.signal
     })
     return response.data
@@ -65,12 +64,13 @@ export const updateTypeById = createAsyncThunk(
       typeId,
       body
     }: {
-      name: string
+      typeId: number
+      body: IType
     },
     thunkAPI
   ) => {
     try {
-      const response = await http.put<SuccessResponse<CreateUpdateTypeType>>(`/types/${typeId}`, body, {
+      const response = await http.put<SuccessResponse<IType>>(`/types/${typeId}`, body, {
         signal: thunkAPI.signal
       })
       return response.data
@@ -83,7 +83,7 @@ export const updateTypeById = createAsyncThunk(
 export const deleteTypeById = createAsyncThunk('types/deleteTypeById', async (typeId: number, thunkAPI) => {
   try {
     console.log(typeId)
-    const response = await http.delete<SuccessResponse<TypeType>>(`/types/${typeId}`, {
+    const response = await http.delete<SuccessResponse<IType>>(`/types/${typeId}`, {
       signal: thunkAPI.signal
     })
     return response.data
@@ -106,21 +106,19 @@ const typesSlice = createSlice({
         const typeIndex = state.typesList.findIndex((type) => type.id === action.payload.data.id)
         if (typeIndex !== -1) {
           state.typesList[typeIndex] = action.payload.data
-          console.log(action.payload)
         }
       })
       .addCase(addType.fulfilled, (state, action) => {
-        state.typesList.push(action.payload)
+        state.typesList.push(action.payload.data)
       })
       .addCase(updateTypeById.fulfilled, (state, action) => {
-        console.log(action.payload)
-        const typeIndex = state.typesList.findIndex((type) => type.id === action.payload.data.id)
+        const idType = action.meta.arg.typeId
+        const typeIndex = state.typesList.findIndex((type) => type.id === idType)
         if (typeIndex !== -1) {
           state.typesList[typeIndex] = action.payload.data
         }
       })
       .addCase(deleteTypeById.fulfilled, (state, action) => {
-        console.log(action.meta.arg)
         const idType = action.meta.arg
         const typeIndex = state.typesList.findIndex((type) => type.id === idType)
         if (typeIndex !== -1) {

@@ -52,7 +52,6 @@ export const TagsTable = ({ dataTag, tagIds }: TagsTableType) => {
 
   // func handle delete
   const handleDelete = () => {
-    console.log('dataRows', dataRows)
     dispatch(deleteTagById(dataRows.id))
       .unwrap()
       .then((res) => {
@@ -108,7 +107,6 @@ export const TagsTable = ({ dataTag, tagIds }: TagsTableType) => {
       key: 'createdDate',
       defaultSortOrder: 'descend',
       sorter: (a: { createdDate: moment.MomentInput }, b: { createdDate: moment.MomentInput }) => {
-        console.log('a', a.createdDate)
         return moment(a.createdDate).unix() - moment(b.createdDate).unix()
       },
       render: (text: string) => {
@@ -116,7 +114,7 @@ export const TagsTable = ({ dataTag, tagIds }: TagsTableType) => {
           <span>{text === null ? <span>{text}</span> : <span>{moment(text).format('DD-MM-YYYY HH:mm:ss')}</span>}</span>
         )
       },
-      width: 120
+      width: 150
     },
     {
       title: 'Update at',
@@ -132,7 +130,7 @@ export const TagsTable = ({ dataTag, tagIds }: TagsTableType) => {
           <span>{text === null ? <span>{text}</span> : <span>{moment(text).format('DD-MM-YYYY HH:mm:ss')}</span>}</span>
         )
       },
-      width: 120
+      width: 150
     },
     {
       title: 'Action',
@@ -146,7 +144,7 @@ export const TagsTable = ({ dataTag, tagIds }: TagsTableType) => {
               setDataRows(record)
             }}
           >
-            Edit
+            <div className='w-10 p-2'>Edit</div>
           </span>
           <span
             onClick={() => {
@@ -154,12 +152,11 @@ export const TagsTable = ({ dataTag, tagIds }: TagsTableType) => {
               setDataRows(record)
             }}
           >
-            Delete
+            <div className='w-15 p-2'>Delete</div>
           </span>
         </div>
       ),
-
-      width: 150
+      width: 200
     }
   ]
   const rowSelection = {

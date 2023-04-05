@@ -1,9 +1,9 @@
 export interface DeviceType {
   id: number
   deviceName: string
-  description: null
-  createdDate: null
-  updatedDate: null
+  description: string
+  createdDate: string
+  updatedDate: string
   tagName: string
   status: number
   typeName: string
@@ -29,7 +29,7 @@ export interface TagType {
 export interface UpdateTagType extends Omit<TagType, 'id' | 'createdDate' | 'updatedDate'> {}
 
 // interface TypeType
-export interface TypeType {
+export interface IType {
   id: number
   name: string
   createdDate: string
