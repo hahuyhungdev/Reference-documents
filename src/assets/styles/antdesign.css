@@ -88,4 +88,48 @@
   display: flex !important;
   align-items: center;
 }
+/* hover checkbox */
+.ant-checkbox:hover .ant-checkbox-inner,
+.ant-checkbox-input:focus + .ant-checkbox-inner {
+  border-color: #c17115 !important;
+}
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #c17115 !important;
+  border-color: #c17115 !important;
+}
+.ant-checkbox-indeterminate .ant-checkbox-inner:after {
+  background-color: #c17115 !important;
+  border-color: #c17115 !important;
+}
+.ant-table-tbody > tr.ant-table-row-selected > td {
+  background-color: #fdf1e2 !important;
+}
+.ant-checkbox :hover {
+  border-color: #c17115 !important;
+}
+
+/* custom sort */
+.ant-table-column-sorter-down.active,
+.ant-table-column-sorter-up.active {
+  color: #c17115 !important;
+}
+.ant-btn-primary {
+  color: white !important;
+  background-color: #c17115 !important;
+  border-color: #c17115 !important;
+}
+
+.ant-dropdown-menu-item-selected,
+.ant-dropdown-menu-submenu-title-selected {
+  background-color: #fdf1e2 !important;
+  color: black !important;
+}
+.ant-btn-link:focus,
+.ant-btn-link:hover {
+  color: #c17115 !important;
+}
+
+.ant-table-filter-trigger.active {
+  color: #c17115 !important;
+}
 /* end custon antd css */

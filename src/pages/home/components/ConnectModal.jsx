@@ -26,9 +26,9 @@ export const ConnectModal = () => {
   // if (!id) return 'No device selected'
   // if (!checkId) return 'No device selected'
   // return `Connected to ${connection.product} -${connection.vendor} - ${connection.id}  `
-  useEffect(() => {
-    console.log('checkId', checkId, 'open', open)
-  }, [checkId, open])
+  // useEffect(() => {
+  //   console.log('checkId', checkId, 'open', open)
+  // }, [checkId, open])
   const handleSelectPort = () => {
     connection.selectPort()
   }

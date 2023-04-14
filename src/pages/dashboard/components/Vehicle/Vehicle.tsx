@@ -19,22 +19,29 @@ const columns = [
     width: 120
   },
   {
-    // title: <div style={{ textAlign: 'right' }}>Status</div>,
-    title: 'Status',
+    title: <div className='text-center'>Status</div>,
     dataIndex: 'status',
     key: 'status',
-    render: (_: any, record: { status: number }) => <IconStatus fill={record.status === 1 ? '#C17115' : '#8C8C8C'} />
+    defaultSortOrder: 'descend' as const,
+    sorter: (a: { status: number }, b: { status: number }) => a.status - b.status,
+    render: (_: any, record: { status: number }) => (
+      <IconStatus className='mx-auto' fill={record.status === 1 ? '#C17115' : '#8C8C8C'} />
+    )
   }
 ]
 interface ITableVehicle {
   devicesData: DeviceType[]
   onIsVisableLineTrace: boolean
+  sentCheckedRows: (selectedRow: DeviceType[]) => void
 }
 
-export const TableVehicle = memo(({ devicesData, onIsVisableLineTrace }: ITableVehicle) => {
+export const TableVehicle = memo(({ devicesData, onIsVisableLineTrace, sentCheckedRows }: ITableVehicle) => {
   const [valueType, setValueType] = useState('All')
+  const [open, setOpen] = useState<boolean>(false)
+
   const typeList = useSelector((state: RootState) => state.type.typesList)
   const [vt, set_components] = useVT(() => ({ scroll: { y: 300 } }), [])
+
   const dispatch = useAppDispatch()
   useEffect(() => {
     const promise = dispatch(getTypesList())
@@ -61,14 +68,25 @@ export const TableVehicle = memo(({ devicesData, onIsVisableLineTrace }: ITableV
     if (valueType === 'All') return true
     return item.typeId?.toString() === valueType.toString()
   })
-
   const onSelectChange = (selectedRowKeys: React.Key[], selectedRows: DeviceType[]) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
+    // console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
+    sentCheckedRows(selectedRows)
   }
+  const dataLength = dataFilter.length
+  let scrollY: string | number = 'false'
+
+  if (dataLength > 5) {
+    if (onIsVisableLineTrace) {
+      scrollY = 150
+    } else {
+      scrollY = 260
+    }
+  }
+
   return (
     <div className='tableVahicle'>
       <SelectOptions
-        defaultValue={valueType}
+        value={valueType}
         ignore
         isIcon
         options={dataSelect}
@@ -77,7 +95,7 @@ export const TableVehicle = memo(({ devicesData, onIsVisableLineTrace }: ITableV
       />
       <Table
         components={vt}
-        scroll={{ y: onIsVisableLineTrace ? 150 : 260 }}
+        scroll={{ y: scrollY }}
         rowSelection={{
           type: 'checkbox',
           onChange: onSelectChange,

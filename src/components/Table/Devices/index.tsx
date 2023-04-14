@@ -45,7 +45,7 @@ export const initialDataRows: DeviceType = {
   tagName: '',
   status: 1,
   typeName: '',
-  tagId: 1,
+  tagId: '',
   typeId: undefined
 }
 const DevicesTable = ({ dataDevice, optionsTypes, optionsTags, deviceIds }: DevicesTableProps) => {

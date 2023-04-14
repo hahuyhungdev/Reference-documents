@@ -10,7 +10,7 @@ class Http {
   constructor() {
     this.accessToken = getAccessTokenFromLS()
     this.instance = axios.create({
-      baseURL: 'http://192.168.1.164:3200/api/v1/',
+      baseURL: 'http://192.168.1.164:4000/api/v1/',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + this.accessToken
@@ -48,7 +48,7 @@ class Http {
         if (error.response?.status !== HttpStatusCode.UnprocessableEntity && error.code !== 'ERR_CANCELED') {
           const data: any | undefined = error.response?.data
           const message = data?.message || error.message
-          console.log('error', data?.message, error.message)
+          // console.log('error', data?.message, error.message)
           toast.error(message)
         }
         return Promise.reject(error)

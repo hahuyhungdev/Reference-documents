@@ -1,5 +1,5 @@
 import { AsyncThunk, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { CreateUpdateDeviceType, DeviceType, TagType } from 'types/common.type'
+import { CreateUpdateDeviceType, DeviceHistoryType, DeviceType, TagType } from 'types/common.type'
 import { SuccessResponse } from 'types/utils.type'
 import http from 'utils/http'
 
@@ -7,6 +7,7 @@ interface DevicesState {
   devicesList: DeviceType[]
   devicesListSearch: DeviceType[]
   deivcesListExport: any[]
+  deviceHistory: DeviceHistoryType
   devicesListLoading: boolean
   currentDeviceId: string | undefined
   isDuplicate: boolean
@@ -16,6 +17,7 @@ const initialState: DevicesState = {
   devicesList: [],
   devicesListSearch: [],
   deivcesListExport: [],
+  deviceHistory: { position: [], id_tag: '' },
   devicesListLoading: false,
   currentDeviceId: undefined,
   isDuplicate: false
@@ -152,7 +154,39 @@ export const exportToExcel = createAsyncThunk(
     }
   }
 )
-
+export const getDeviceHistoryById = createAsyncThunk(
+  'devices/getDeviceHistoryById',
+  async (
+    {
+      start,
+      end,
+      id_tag
+    }: {
+      start: number
+      end: number
+      id_tag: string | undefined
+    },
+    thunkAPI
+  ) => {
+    try {
+      const response = await http.get<
+        SuccessResponse<{
+          position: {
+            x: number
+            y: number
+            value: number
+          }[]
+          id_tag: string
+        }>
+      >(`/devices/history?start=${start}&end=${end}&id_tag=${id_tag}`, {
+        signal: thunkAPI.signal
+      })
+      return response.data
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
 const devicesSlice = createSlice({
   name: 'devices',
   initialState,
@@ -197,6 +231,9 @@ const devicesSlice = createSlice({
       .addCase(exportToExcel.fulfilled, (state, action) => {
         // console.log(action.payload.data)
         state.deivcesListExport = action.payload.data
+      })
+      .addCase(getDeviceHistoryById.fulfilled, (state, action) => {
+        state.deviceHistory = action.payload.data
       })
       .addMatcher<PendingAction>(
         (action) => action.type.endsWith('/pending'),

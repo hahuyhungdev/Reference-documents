@@ -1,26 +1,43 @@
 import { getMap } from 'apis/map.slice'
 import Background from 'assets/images/bg.png'
-import { useEffect, useRef } from 'react'
+import h337 from 'heatmap.js'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-export const HeatMap = ({ icons }) => {
+export const HeatMap = ({ onData, icons }) => {
+  const [instance, setInstance] = useState(null)
   const { switchGridView, switchAnchorView } = useSelector((state) => state.stateSwitch)
   const urlMap = useSelector((state) => state.map.url)
-  console.log('urlMap', urlMap)
   const dispatch = useDispatch()
+  const heatmapRef = useRef(null)
   useEffect(() => {
     const promise = dispatch(getMap())
     return () => {
       promise.abort()
     }
   }, [dispatch])
-
-  const heatmapRef = useRef(null)
+  useEffect(() => {
+    var heatmapInstance = h337.create({
+      container: document.querySelector('.heatmap'),
+      radius: 12,
+      maxOpacity: 0.5,
+      minOpacity: 0,
+      blur: 1
+      // height: 500,
+    })
+    setInstance(heatmapInstance)
+  }, [])
+  // handle change data when change time ago
+  useEffect(() => {
+    instance &&
+      instance.setData({
+        max: 100,
+        min: 0,
+        data: onData
+      })
+  }, [instance, onData])
 
   const shouldDraw = switchGridView || switchAnchorView
-  console.log('shouldDraw', shouldDraw)
-
-  // Draw the grid lines on the canvas
   const drawGrid = () => {
     const canvas = heatmapRef.current
     const ctx = canvas.getContext('2d')
@@ -29,32 +46,31 @@ export const HeatMap = ({ icons }) => {
 
     // loop through each column and draw a line
     for (let i = 0; i < 10; i++) {
-      const x = i * columnWidth // starting x coordinate of line
+      const x = i * columnWidth + 0.5 // starting x coordinate of line
       const y = 0 // starting y coordinate of line
       const x1 = x // ending x coordinate of line
-      const y1 = canvas.height // ending y coordinate of line
+      const y1 = canvas.height + 0.5 // ending y coordinate of line
       ctx.beginPath()
-      ctx.moveTo(x, y)
-      ctx.lineTo(x1, y1)
-      ctx.strokeStyle = 'white'
+      ctx.moveTo(x, y + 0.5)
+      ctx.lineTo(x1, y1 + 0.5)
+      ctx.strokeStyle = 'orange'
       ctx.lineWidth = 1
       ctx.stroke()
     }
     // loop through each row and draw a line
     for (let i = 0; i < 10; i++) {
       const x = 0
-      const y = i * rowHeight
+      const y = i * rowHeight + 0.5
       const x1 = canvas.width
       const y1 = y
       ctx.beginPath()
       ctx.moveTo(x, y)
       ctx.lineTo(x1, y1)
-      ctx.strokeStyle = 'white'
+      ctx.strokeStyle = 'orange'
       ctx.lineWidth = 1
       ctx.stroke()
     }
   }
-
   useEffect(() => {
     const canvas = heatmapRef.current
     const { offsetWidth, offsetHeight } = canvas
@@ -65,7 +81,7 @@ export const HeatMap = ({ icons }) => {
         const iconImage = new Image()
         iconImage.src = image
         iconImage.onload = () => {
-          ctx.drawImage(iconImage, x, y, iconImage.width, iconImage.height)
+          ctx.drawImage(iconImage, x, y, 10, 10)
         }
       })
     }
@@ -85,7 +101,6 @@ export const HeatMap = ({ icons }) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
     }
   }, [switchGridView, icons, shouldDraw, switchAnchorView])
-
   return (
     <div className='App-heatmap'>
       <div
@@ -94,7 +109,10 @@ export const HeatMap = ({ icons }) => {
           backgroundImage: urlMap === '' ? `url(${Background})` : `url(${urlMap})`
         }}
       >
-        <canvas className='heatmap' ref={heatmapRef} />
+        <div className='heatmap'>
+          <canvas ref={heatmapRef} className='h-full w-full' />
+        </div>
+        <div className='tooltip'></div>
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { io, Socket } from 'socket.io-client'
 
-const url = 'http://192.168.1.164:3000'
+const url = 'http://192.168.1.164:3200'
 
 export class SocketClass {
   socket: Socket
@@ -13,16 +13,11 @@ export class SocketClass {
       transports: ['websocket'],
       reconnection: false,
       autoConnect: false
-      // reconnectionAttempts: 100,
-      // reconnectionDelay: 5000,
-      // reconnectionDelayMax: 10 * 1000,
-      // autoConnect: true,
-      // rejectUnauthorized: true
     })
   }
   close(createNew: boolean) {
     this.socket.close()
-    console.log('socket closed', createNew)
+    //console.log('socket closed', createNew)
     if (createNew) {
       this.socket = this.createNewSocket()
     }

@@ -4,11 +4,12 @@ export interface DeviceType {
   description: string
   createdDate: string
   updatedDate: string
+  tagId: string
   tagName: string
+  id_tag?: string
   status: number
-  typeName: string
-  tagId: number
   typeId?: number
+  typeName: string
   // name?: string
 }
 export interface CreateUpdateDeviceType {
@@ -16,6 +17,14 @@ export interface CreateUpdateDeviceType {
   typeId: number
   name: string
   description: string
+}
+export interface DeviceHistoryType {
+  position: {
+    x: number
+    y: number
+    value: number
+  }[]
+  id_tag: string
 }
 export interface TagType {
   id: number
@@ -37,6 +46,12 @@ export interface IType {
 }
 
 export type dataOptions = {
-  value: number
+  value: number | string
   label: string
+}
+
+export type dataHeatmap = {
+  x: number
+  y: number
+  value: number
 }

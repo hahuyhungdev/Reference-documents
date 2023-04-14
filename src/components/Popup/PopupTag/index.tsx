@@ -39,6 +39,7 @@ export const PopupTag = ({
     <div className='modalTag justify-items-start'>
       <Modal
         maskClosable={false}
+        closable={false}
         title={title}
         open={onOpen}
         centered

@@ -58,3 +58,96 @@ export const socketInstance = new SocketClass()
 ```
 
 <br/>
+
+---
+
+# version 2: thay đổi cách tiếp cận data từ backend lên client
+
+## Group button Off
+
+Lúc này data từ dưới server sẽ bắn lên theo dạng mảng. có các thông tin như
+
+```jsx
+interface data {
+  position: {
+    x: number,
+    y: number,
+    value: number
+  };
+  tag_id: string;
+}
+```
+
+Theo như cách thống nhất với bên backend tới thời điểm này ( 4/11/2023) thì data sẽ bắn lên theo dạng mảng (`REALTIME`), mỗi phần tử trong mảng sẽ là 1 object có các thông tin như trên. Ở trên client thì khi ta checked trên table ( vehicle) ở dashboard thì sẽ có 2 thông tin ta nhận được
+
+- 1: id row được checked
+- 2: data được checked
+  > Quan trọng: ở đây data bắn lên có thêm "tag_id" và trong data của device thì cũng sẽ có field "tag_id". Vì vậy khi ta checked thì ta sẽ phải compare "tag_id" của data được checked với "tag_id" của data bắn lên từ server. Nếu 2 cái này trùng nhau thì ta sẽ hiển thị data đó lên heatmap
+
+Đây là 1 ví dụ cho cách thức hoạt động
+
+```jsx
+// data được trả realtime từ backend lên với object
+const dataRecived ={
+    position: [
+      { x: 1, y: 2, value: 3 },
+      { x: 2, y: 3, value: 4 }
+    ],
+    tag_id: 'A'
+  }
+// data được checked trên table
+const deviceTypes = [
+  { id: 1, tag_id: "A", typeId: 100, deviceName: "Device A" },
+  { id: 2, tag_id: "B", typeId: 200, deviceName: "Device B" }
+];
+function findDataByTagId(data, deviceTypes) {
+  const deviceType = deviceTypes.find(d => d.tag_id === data.tag_id);
+  if (deviceType) {
+    return data;
+  }
+  return null;
+}
+const result = findDataByTagId(dataRecived, deviceTypes);
+console.log(result)
+{
+  position: [ { x: 1, y: 2, value: 3 }, { x: 2, y: 3, value: 4 } ],
+  tag_id: 'A'
+}
+```
+
+> Giải thích: ở đây ta sẽ lọc ra những data có tag_id trùng với tag_id của device được checked với hàm `filterDataByTagId()`.
+
+- Format data của heatmap
+
+```jsx
+const convertData = (data) => {
+  return data.position.map(({ x, y, value }) => ({ x, y, value }))
+}
+console.log(convertData(result))
+```
+
+## Group button Line trace và Group button Heatmap
+
+### Cách thức hoạt động
+
+Mặc định thì Historical Data ( button treen client) sẽ là default và data thay vì là `REALTIME` thì lúc này nó dùng API và socket sẽ bị đóng.
+
+### Cách thức Data được bắn lên từ server
+
+Về các trả data từ server lên client thì cũng tương tự như trên, nhưng ở đây ta sẽ có 1 số điểm khác biệt
+
+- Giao thức: `API` lúc này thì tiến hành truyền các tham số query để lấy data từ server, hiện tại có các fiedls như sau
+
+```jsx
+ {
+      start,
+      end,
+      id_tag
+    }: {
+      start: number
+      end: number
+      id_tag: string
+    },
+```
+
+với start và end là thời gian bắt đầu và kết thúc, id_tag là id của device được checked. Time được format qua timestamp

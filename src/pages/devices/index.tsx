@@ -159,26 +159,23 @@ export const Devices = () => {
   return (
     <div className='mainDevices'>
       {devicesList?.length === 0 ? (
-        <>
-          <h3>Objects List</h3>
-          <div className='empty'>
-            <img src={nodata} alt='nodata' />
-            <h3>No data</h3>
-            <ButtonCustom isIcon icon={<IconUnion />} onClick={showCreatePopup}>
-              Create new
-            </ButtonCustom>
-            {isModalCreatVisible && (
-              <PopupDevice
-                onFinish={handleCreate}
-                title='Create Object'
-                optionsTypes={optionsTypes}
-                optionsTags={optionsTags}
-                onCancel={() => setIsModalCreatVisible(false)}
-                onOpen={isModalCreatVisible}
-              />
-            )}
-          </div>
-        </>
+        <div className='empty'>
+          <img src={nodata} alt='nodata' />
+          <h3>No data</h3>
+          <ButtonCustom isIcon icon={<IconUnion />} onClick={showCreatePopup}>
+            Create new
+          </ButtonCustom>
+          {isModalCreatVisible && (
+            <PopupDevice
+              onFinish={handleCreate}
+              title='Create Object'
+              optionsTypes={optionsTypes}
+              optionsTags={optionsTags}
+              onCancel={() => setIsModalCreatVisible(false)}
+              onOpen={isModalCreatVisible}
+            />
+          )}
+        </div>
       ) : (
         <>
           <header>

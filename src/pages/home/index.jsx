@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
+import { getAddr, getLabel, getPanid } from 'utils/regex'
 
 import { keyCombo, shortcuts } from '../../utils/shortcuts'
 import AsciiInput from './components/AsciiInput'
@@ -16,6 +17,7 @@ let wip = ''
 export function Home() {
   const connection = useConnectionStore()
   const [displayedInput, setDisplayedInput] = useState('')
+  const [dataReceived, setDataReceived] = useState([])
   const [valuePosition, setValuePosition] = useState({
     x: 0,
     y: 0,
@@ -32,13 +34,15 @@ export function Home() {
   const pid = match && match[2]
   // console.log('vid', vid, 'pid', pid)
   const { messages } = useSelector((state) => state.serial)
+  useEffect(() => {
+    console.log('render messages', messages)
+    if (messages.length > 0) {
+      setDataReceived((old) => [...old, ...messages])
+    }
+  }, [messages])
 
-  // useEffect(() => {
-  //   console.log('dataInput', displayedInput)
-  // }, [displayedInput])
   useEffect(() => {
     if (vid && pid) {
-      console.log('render vid && pid')
       connection.init(vid, pid).then(() => {
         const consoleDiv = document.querySelector('#console')
         const outputDiv = document.querySelector('#output')
@@ -150,30 +154,46 @@ export function Home() {
     connection.write(cmd)
   }
   //funtion handle factory
-  function createCommandHandler(cmd, onFuntion = false) {
+  function createCommandHandler(cmd, onFuntion = true) {
     return function () {
       console.log('cmd', cmd, 'onFuntion', onFuntion)
       const cmdString = `${cmd} ${sub}`
       connection.write(cmdString)
       if (onFuntion) {
-        setTimeout(connection.write('\r\r'), 100)
+        setTimeout(() => {
+          sendCommand()
+        }, 1000)
       }
     }
+  }
+  // show node properties command
+  const handleNodeProperties = (e) => {
+    console.log('dataReceived', dataReceived)
+    // find panid in messages array with regex
+    const panidsName = messages.find((dataReceived) => getPanid(dataReceived) !== null)
+    // find getAddr in messages array with regex
+    const addr = messages.find((dataReceived) => getAddr(dataReceived) !== null)
+    // find label in messages array with regex
+    const label = messages.find((dataReceived) => getLabel(dataReceived) !== null)
+
+    console.log(addr ? `addr ${getAddr(addr)}` : '')
+    console.log(panidsName ? `panidsName ${getPanid(panidsName)}` : '')
+    console.log(label ? `label ${getLabel(label)}` : '')
   }
   //this help command(show all command)
   const sendHelp = createCommandHandler('help')
   //show System info
-  const sendSi = createCommandHandler('si')
+  const sendSi = createCommandHandler('si', false)
   // Set mode to AN
-  const sendNma = createCommandHandler('nma', true)
+  const sendNma = createCommandHandler('nma')
   // Set mode to TN
-  const sendNmt = createCommandHandler('nmt', true)
+  const sendNmt = createCommandHandler('nmt')
   //  Get pos
   const getPos = createCommandHandler('apg')
   // Reboot the system
-  const reset = createCommandHandler('reset', true)
+  const reset = createCommandHandler('reset')
   // Factory reset
-  const factory_reset = createCommandHandler('frst', true)
+  const factory_reset = createCommandHandler('frst')
 
   function setInputValue(target, value) {
     target.selectionStart = 0
@@ -254,6 +274,9 @@ export function Home() {
         </button>
         <button className='cursor-pointer rounded-sm bg-red-300 p-1' onClick={factory_reset}>
           Factory reset
+        </button>
+        <button className='cursor-pointer rounded-sm bg-red-300 p-1' onClick={handleNodeProperties}>
+          node properties
         </button>
       </div>
       <form onSubmit={handleSubmitPosition}>

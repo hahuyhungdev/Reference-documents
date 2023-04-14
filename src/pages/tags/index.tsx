@@ -73,13 +73,15 @@ export const Tags = () => {
     dispatch(deleteManyTags(listIds))
       .unwrap()
       .then((res) => {
+        console.log('res', res)
         toast.success(res.message)
         setIsCheckUseData(false)
         setIsModalConfirm(false)
       })
       .catch((err) => {
+        console.log('err', err)
         if (err.response.status === HttpStatusCode.BadRequest) {
-          toast.error(err.response.data.message)
+          // toast.error(err.response.data.message)
         }
       })
   }
@@ -107,24 +109,21 @@ export const Tags = () => {
   return (
     <div className='mainTags'>
       {tagList?.length === 0 ? (
-        <>
-          <h3>Tags List</h3>
-          <div className='empty'>
-            <img src={nodata} alt='nodata' />
-            <h3>No data</h3>
-            <ButtonCustom isIcon icon={<IconUnion />} onClick={showPopup}>
-              Create new
-            </ButtonCustom>
-            {isModalVisible && (
-              <PopupTag
-                onFinish={handleCreate}
-                title='Add Object'
-                onCancel={() => setIsModalVisible(false)}
-                onOpen={isModalVisible}
-              />
-            )}
-          </div>
-        </>
+        <div className='empty'>
+          <img src={nodata} alt='nodata' />
+          <h3>No data</h3>
+          <ButtonCustom isIcon icon={<IconUnion />} onClick={showPopup}>
+            Create new
+          </ButtonCustom>
+          {isModalVisible && (
+            <PopupTag
+              onFinish={handleCreate}
+              title='Add Object'
+              onCancel={() => setIsModalVisible(false)}
+              onOpen={isModalVisible}
+            />
+          )}
+        </div>
       ) : (
         <>
           <header>

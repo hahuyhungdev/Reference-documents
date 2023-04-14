@@ -28,17 +28,17 @@ export const uploadMap = createAsyncThunk('map/uploadMap', async (body: FormData
     console.log('response', response)
     return response.data
   } catch (error: any) {
-    console.log(error)
     throw error
   }
 })
 // get map url
 export const getMap = createAsyncThunk('map/getMap', async (_, thunkAPI) => {
   try {
-    const response = await http.get('maps/search')
+    const response = await http.get('maps/search', {
+      signal: thunkAPI.signal
+    })
     return response.data
   } catch (error: any) {
-    console.log(error)
     throw error
   }
 })

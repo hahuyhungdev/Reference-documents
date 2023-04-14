@@ -81,7 +81,11 @@ export const PopupDevice = ({
           >
             <SelectOptions options={optionsTags} placeholder='Select Tag' />
           </Form.Item>
-          <Form.Item label='Description' name={'description'}>
+          <Form.Item
+            label='Description'
+            name={'description'}
+            rules={[{ required: true, message: 'Description is required' }]}
+          >
             <Input.TextArea showCount maxLength={100} placeholder='Autosize height based on content lines' />
           </Form.Item>
         </Form>
