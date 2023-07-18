@@ -11,7 +11,6 @@ import { IconUnion } from 'components/Icons'
 import { PopupDevice } from 'components/Popup'
 import DevicesTable from 'components/Table/Devices'
 import { debounce } from 'lodash'
-import { getTagListUnused } from 'pages/tags/tags.slice'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
@@ -34,15 +33,9 @@ export const Devices = () => {
   const dispatch = useAppDispatch()
 
   const { devicesList, devicesListSearch } = useSelector((state: RootState) => state.devices)
-  const tagListUnused = useSelector((state: RootState) => state.tags.tagListUnused)
+
   const typeList = useSelector((state: RootState) => state.type.typesList)
 
-  useEffect(() => {
-    const promise = dispatch(getTagListUnused())
-    return () => {
-      promise.abort()
-    }
-  }, [dispatch])
   useEffect(() => {
     const promise = dispatch(getTypesList())
     return () => {
@@ -51,26 +44,15 @@ export const Devices = () => {
   }, [dispatch])
   useEffect(() => {
     const promise = dispatch(getDevicesList())
+
     return () => {
       promise.abort()
     }
   }, [dispatch])
 
   useEffect(() => {
-    console.log('devicesListSearch', devicesListSearch)
-  }, [devicesListSearch])
-
-  // handle options tags
-  useEffect(() => {
-    setOptionsTag(
-      tagListUnused.map((item) => {
-        return {
-          value: item.id,
-          label: item.name
-        }
-      })
-    )
-  }, [tagListUnused])
+    console.log('devicesList', devicesList)
+  }, [devicesList])
 
   // handle options types
   useEffect(() => {
@@ -107,7 +89,7 @@ export const Devices = () => {
     )
       .unwrap()
       .then((res) => {
-        toast.success(res.message)
+        toast.success(res.data.message)
         setIsModalCreatVisible(false)
       })
       .catch((err) => {

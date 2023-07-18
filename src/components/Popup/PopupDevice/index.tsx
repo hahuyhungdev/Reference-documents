@@ -30,7 +30,7 @@ export const PopupDevice = ({
   validateStatus = 'success'
 }: PopupDeviceType) => {
   const [form] = Form.useForm()
-
+  console.log('onInitialValues', onInitialValues)
   return (
     <div className='antCustom'>
       <Modal
@@ -53,7 +53,7 @@ export const PopupDevice = ({
           }}
           colon={false}
           initialValues={{
-            name: onInitialValues?.deviceName,
+            name: onInitialValues?.deviceName || '',
             typeId: onInitialValues?.typeId,
             tagId: onInitialValues?.tagId,
             description: onInitialValues?.description

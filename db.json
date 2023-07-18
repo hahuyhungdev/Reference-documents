@@ -1,28 +1,8 @@
 {
   "devices": [
     {
-      "id": "2",
-      "value": "Demo tag 2",
-      "label": "Person",
-      "status": true,
-      "tag": "tag5 3",
-      "description": "Vel cras auctor at tortor imperdiet amet id sed rhoncus 01",
-      "createdAt": "2021-02-05 08:28:36 ",
-      "updatedAt": "2021-02-05 08:28:36 "
-    },
-    {
-      "id": "3",
-      "value": "Demo tag 3 person",
-      "label": "Person",
-      "status": false,
-      "tag": "Tag 03",
-      "description": "Description 01",
-      "createdAt": "2021-02-05 08:28:36 ",
-      "updatedAt": "2021-02-05 08:28:36 "
-    },
-    {
       "id": "4",
-      "value": "Demo tag 4",
+      "deviceName": "Demo tag 4",
       "label": "Group",
       "status": true,
       "tag": "Tag 04",
@@ -32,7 +12,7 @@
     },
     {
       "id": "5",
-      "value": "Demo tag 5 group",
+      "deviceName": "Demo tag 5 group",
       "label": "Group",
       "status": true,
       "tag": "Tag 05",
@@ -42,7 +22,7 @@
     },
     {
       "id": "6",
-      "value": "Demo tag 6 person",
+      "deviceName": "Demo tag 6 person",
       "label": "Person",
       "status": false,
       "tag": "Tag 06",
@@ -52,7 +32,7 @@
     },
     {
       "id": "8",
-      "value": "Demo tag 8",
+      "deviceName": "Demo tag 8",
       "label": "Forklift",
       "status": true,
       "tag": "Tag 08",
@@ -62,7 +42,7 @@
     },
     {
       "id": "9",
-      "value": "Demo tag 9",
+      "deviceName": "Demo tag 9",
       "label": "Forklift",
       "status": true,
       "tag": "Tag 09",
@@ -168,6 +148,32 @@
       "createdAt": "2023-03-07 10:38:39",
       "updatedAt": "2023-03-07 10:38:39",
       "id": "9PFn4i_"
+    }
+  ],
+  "types": [
+    {
+      "id": 1,
+      "name": "type 1",
+      "createdDate": "string",
+      "updatedDate": "string"
+    },
+    {
+      "id": 2,
+      "name": "type 2",
+      "createdDate": "string",
+      "updatedDate": "string"
+    },
+    {
+      "id": 3,
+      "name": "type 3",
+      "createdDate": "string",
+      "updatedDate": "string"
+    },
+    {
+      "id": 4,
+      "name": "type 4",
+      "createdDate": "string",
+      "updatedDate": "string"
     }
   ]
 }

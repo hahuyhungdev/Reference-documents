@@ -33,8 +33,8 @@ export const getDevicesList = createAsyncThunk('devices/getDevicesList', async (
     const response = await http.get<SuccessResponse<DeviceType[]>>('/devices', {
       signal: thunkAPI.signal
     })
-
-    return response.data
+    console.log('response', response)
+    return response
   } catch (error) {
     return thunkAPI.rejectWithValue(error)
   }
@@ -45,7 +45,7 @@ export const getDeviceById = createAsyncThunk('devices/getDeviceById', async (de
     const response = await http.get<SuccessResponse<DeviceType>>(`/devices/${deviceId}`, {
       signal: thunkAPI.signal
     })
-    return response.data
+    return response
   } catch (error) {
     return thunkAPI.rejectWithValue(error)
   }
@@ -56,7 +56,7 @@ export const addDevice = createAsyncThunk('devices/addDevice', async (device: Cr
     const response = await http.post<SuccessResponse<DeviceType>>('/devices', device, {
       signal: thunkAPI.signal
     })
-    return response.data
+    return response
   } catch (error: any) {
     if (error.name === 'AxiosError' && error.response.status === 422) {
       return thunkAPI.rejectWithValue(error.response.data)
@@ -82,7 +82,7 @@ export const updateDeviceById = createAsyncThunk(
       const response = await http.put<SuccessResponse<CreateUpdateDeviceType>>(`/devices/${deviceId}`, body, {
         signal: thunkAPI.signal
       })
-      return response.data
+      return response
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data)
     }
@@ -94,7 +94,7 @@ export const deleteDeviceById = createAsyncThunk('devices/deleteDeviceById', asy
     const response = await http.delete<SuccessResponse<DeviceType>>(`/devices/${deviceId}`, {
       signal: thunkAPI.signal
     })
-    return response.data
+    return response
   } catch (error) {
     return thunkAPI.rejectWithValue(error)
   }
@@ -194,16 +194,16 @@ const devicesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getDevicesList.fulfilled, (state, action) => {
-        state.devicesList = action.payload.data
+        state.devicesList = action.payload.data as any
       })
-      .addCase(getDeviceById.fulfilled, (state, action) => {
-        const deviceIndex = state.devicesList.findIndex((device) => device.id === action.payload.data.id)
-        if (deviceIndex !== -1) {
-          state.devicesList[deviceIndex] = action.payload.data
-        }
-      })
+      // .addCase(getDeviceById.fulfilled, (state, action) => {
+      //   const deviceIndex = state.devicesList.findIndex((device) => device.id === action.payload.data.id)
+      //   if (deviceIndex !== -1) {
+      //     state.devicesList[deviceIndex] = action.payload.data as any
+      //   }
+      // })
       .addCase(addDevice.fulfilled, (state, action) => {
-        state.devicesList.push(action.payload.data)
+        state.devicesList.push(action.payload.data as any)
       })
       .addCase(updateDeviceById.fulfilled, (state, action) => {
         const idDevice = action.meta.arg.deviceId

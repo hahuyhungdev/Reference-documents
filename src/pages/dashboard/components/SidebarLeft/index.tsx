@@ -72,7 +72,7 @@ export const SidebarLeft = ({ onDates }: { onDates: number[] }) => {
       >
         change
       </button> */}
-      <HeatMap icons={icons} />
+      <HeatMap icons={icons} onData={filterData} />
     </div>
   )
 }

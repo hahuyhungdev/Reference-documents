@@ -25,7 +25,8 @@ export const getTypesList = createAsyncThunk('types/getTypesList', async (_, thu
     const response = await http.get<SuccessResponse<IType[]>>('/types', {
       signal: thunkAPI.signal
     })
-    return response.data
+
+    return response
   } catch (error) {
     return thunkAPI.rejectWithValue(error)
   }
@@ -36,7 +37,8 @@ export const getTypeById = createAsyncThunk('types/getTypeById', async (typeId: 
     const response = await http.get<SuccessResponse<IType>>(`/types/${typeId}`, {
       signal: thunkAPI.signal
     })
-    return response.data
+    console.log('response', response)
+    return response
   } catch (error) {
     return thunkAPI.rejectWithValue(error)
   }
@@ -47,10 +49,10 @@ export const addType = createAsyncThunk('types/addType', async (type: { name: st
     const response = await http.post<SuccessResponse<IType>>('/types', type, {
       signal: thunkAPI.signal
     })
-    return response.data
+    return response
   } catch (error: any) {
     if (error.name === 'AxiosError' && error.response.status === 422) {
-      return thunkAPI.rejectWithValue(error.response.data)
+      return thunkAPI.rejectWithValue(error.response)
     }
     throw error
   }
@@ -100,22 +102,22 @@ const typesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getTypesList.fulfilled, (state, action) => {
-        state.typesList = action.payload.data
+        state.typesList = action.payload.data as any
       })
-      .addCase(getTypeById.fulfilled, (state, action) => {
-        const typeIndex = state.typesList.findIndex((type) => type.id === action.payload.data.id)
-        if (typeIndex !== -1) {
-          state.typesList[typeIndex] = action.payload.data
-        }
-      })
+      // .addCase(getTypeById.fulfilled, (state, action) => {
+      //   const typeIndex = state.typesList.findIndex((type) => type.id === (action.payload.id as any))
+      //   if (typeIndex !== -1) {
+      //     state.typesList[typeIndex] = action.payload as any
+      //   }
+      // })
       .addCase(addType.fulfilled, (state, action) => {
-        state.typesList.push(action.payload.data)
+        state.typesList.push(action.payload.data as any)
       })
       .addCase(updateTypeById.fulfilled, (state, action) => {
         const idType = action.meta.arg.typeId
         const typeIndex = state.typesList.findIndex((type) => type.id === idType)
         if (typeIndex !== -1) {
-          state.typesList[typeIndex] = action.payload.data
+          state.typesList[typeIndex] = action.payload.data as any
         }
       })
       .addCase(deleteTypeById.fulfilled, (state, action) => {

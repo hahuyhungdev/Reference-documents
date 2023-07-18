@@ -37,7 +37,6 @@ interface ITableVehicle {
 
 export const TableVehicle = memo(({ devicesData, onIsVisableLineTrace, sentCheckedRows }: ITableVehicle) => {
   const [valueType, setValueType] = useState('All')
-  const [open, setOpen] = useState<boolean>(false)
 
   const typeList = useSelector((state: RootState) => state.type.typesList)
   const [vt, set_components] = useVT(() => ({ scroll: { y: 300 } }), [])

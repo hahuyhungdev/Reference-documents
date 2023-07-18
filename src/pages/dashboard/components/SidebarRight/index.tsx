@@ -175,12 +175,11 @@ export const SidebarRight = ({ sendDates }: sidebarRightProps) => {
       </div>
       <div className='vehicleList'>
         <div className='titleVehicle'>VEHICLE LIST</div>
-        <TableVehicle devicesData={devicesData} onIsVisableLineTrace={isVisableLineTrace} />
-        {/* 
-        <List className='list' height={300} itemCount={listArr.length} itemSize={35} width={250}>
-          {renderRow}
-        </List> */}
-        {/* <VirtualizedList /> */}
+        <TableVehicle
+          devicesData={devicesData}
+          onIsVisableLineTrace={isVisableLineTrace}
+          sentCheckedRows={(data: any) => console.log('data', data)}
+        />
       </div>
     </div>
   )

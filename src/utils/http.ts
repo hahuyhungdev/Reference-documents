@@ -1,28 +1,19 @@
 import axios, { AxiosInstance, HttpStatusCode } from 'axios'
 import { toast } from 'react-toastify'
-import { AuthResponse } from 'types/auth.type'
-
-import { getAccessTokenFromLS, setAccessTokenToLS } from './auth'
 
 class Http {
   instance: AxiosInstance
-  private accessToken: string
+
   constructor() {
-    this.accessToken = getAccessTokenFromLS()
     this.instance = axios.create({
-      baseURL: 'http://192.168.1.164:4000/api/v1/',
+      baseURL: ' http://localhost:5000',
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + this.accessToken
+        'Content-Type': 'application/json'
       }
     })
     // add a request interceptor
     this.instance.interceptors.request.use(
       (config) => {
-        if (this.accessToken && config.headers) {
-          config.headers.Authorization = 'Bearer ' + this.accessToken
-          return config
-        }
         return config
       },
       (error) => {
@@ -32,16 +23,6 @@ class Http {
     // add a response interceptor
     this.instance.interceptors.response.use(
       (response) => {
-        // console.log('response', response)
-        const dataResponse = response.data as AuthResponse
-        let tokenHeader
-        const TokenAuth: any | undefined = response.config.headers.Authorization
-        if (TokenAuth && TokenAuth.startsWith('Bearer ')) {
-          tokenHeader = TokenAuth.split(' ')[1]
-        }
-        // console.log('tokenHeader', tokenHeader)
-        this.accessToken = dataResponse.data.accessToken || tokenHeader
-        setAccessTokenToLS(this.accessToken)
         return response
       },
       function (error) {
