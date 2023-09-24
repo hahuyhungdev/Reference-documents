@@ -1,0 +1,27 @@
+{
+  
+  "compare": {
+    "title": "Compare Uniswap vs an other Asset",
+    "tooltip": {
+      "revenue": "Fees collected: transactions, purchases, ... take place on this product",
+      "total_user": "Total number of users",
+      "holders": "Number of people holding this token over 1 year",
+      "reliability": "reliability",
+      "investment_potential": "Investment potential",
+      "backer_ranking": "Backer-ranking",
+      "sector_rank": "Rank of this asset's capitalization relative to other assets in the same sector"
+    },
+    "compare": "Compare",
+    "to_ath": "% to ATH",
+    "market_cap": "Market Cap",
+
+    "revenue": "Revenue",
+    "community_token": "Community Token",
+    "total_user": "Total User",
+    "holders": "Holder > 1 year",
+    "reliability": "Reliability",
+    "investment_potential": "Investment potential",
+    "backer_ranking": "Backer-ranking",
+    "sector_rank": "Sector-ranking"
+  }
+}

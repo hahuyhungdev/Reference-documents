@@ -1,0 +1,15 @@
+{
+  "heading": "Các danh mục",
+  "description": "Text description here",
+  "total_market_cap": "Tổng vốn hóa các danh mục",
+  "popular_crypto_categories": "DANH MỤC CRYPTO PHỔ BIẾN",
+  "table": {
+    "name": "Tên",
+    "market_cap": "Market Cap",
+    "avg_chg": "Biến động trung bình",
+    "volume": "Volume",
+    "dominance": "Dominance",
+    "assets_number": "Số dự án",
+    "gainer": "Gainer/ Loser Number"
+  }
+}

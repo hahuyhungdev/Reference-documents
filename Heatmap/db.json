@@ -1,0 +1,173 @@
+{
+  "devices": [
+    {
+      "id": "2",
+      "value": "Demo tag 2",
+      "label": "Person",
+      "status": true,
+      "tag": "tag5 3",
+      "description": "Vel cras auctor at tortor imperdiet amet id sed rhoncus 01",
+      "createdAt": "2021-02-05 08:28:36 ",
+      "updatedAt": "2021-02-05 08:28:36 "
+    },
+    {
+      "id": "3",
+      "value": "Demo tag 3 person",
+      "label": "Person",
+      "status": false,
+      "tag": "Tag 03",
+      "description": "Description 01",
+      "createdAt": "2021-02-05 08:28:36 ",
+      "updatedAt": "2021-02-05 08:28:36 "
+    },
+    {
+      "id": "4",
+      "value": "Demo tag 4",
+      "label": "Group",
+      "status": true,
+      "tag": "Tag 04",
+      "description": "Description 01",
+      "createdAt": "2021-02-05 08:28:36 ",
+      "updatedAt": "2021-02-05 08:28:36 "
+    },
+    {
+      "id": "5",
+      "value": "Demo tag 5 group",
+      "label": "Group",
+      "status": true,
+      "tag": "Tag 05",
+      "description": "Description 01",
+      "createdAt": "2021-02-05 08:28:36 ",
+      "updatedAt": "2021-02-05 08:28:36 "
+    },
+    {
+      "id": "6",
+      "value": "Demo tag 6 person",
+      "label": "Person",
+      "status": false,
+      "tag": "Tag 06",
+      "description": "Description 01",
+      "createdAt": "2021-02-05 08:28:36 ",
+      "updatedAt": "2021-02-05 08:28:36 "
+    },
+    {
+      "id": "8",
+      "value": "Demo tag 8",
+      "label": "Forklift",
+      "status": true,
+      "tag": "Tag 08",
+      "description": "Description 0112",
+      "createdAt": "2021-02-05 08:28:36 ",
+      "updatedAt": "2021-02-05 08:28:36 "
+    },
+    {
+      "id": "9",
+      "value": "Demo tag 9",
+      "label": "Forklift",
+      "status": true,
+      "tag": "Tag 09",
+      "description": "Description 01",
+      "createdAt": "2021-02-05 08:28:36 ",
+      "updatedAt": "2021-02-05 08:28:36 "
+    }
+  ],
+  "tags": [
+    {
+      "id": "2",
+      "value": "tag21",
+      "label": "Tag 02",
+      "description": "cras auctor at tortor imperdiet amet id sed rhoncus.",
+      "createdAt": "2021-05-01 12:40:00",
+      "updatedAt": "2021-05-01 12:00:00"
+    },
+    {
+      "id": "3",
+      "value": "tag3",
+      "label": "Tag 03",
+      "description": "Vel cras auctor at tortor imperdiet amet id sed rhoncus.",
+      "createdAt": "2021-05-01 12:20:00",
+      "updatedAt": "2021-05-01 12:00:00"
+    },
+    {
+      "id": "4",
+      "value": "tag4",
+      "label": "Tag 04",
+      "description": "Vel cras auctor at tortor imperdiet amet id sed rhoncus.",
+      "createdAt": "2021-05-01 12:00:00",
+      "updatedAt": "2021-05-01 12:00:00"
+    },
+    {
+      "id": "5",
+      "value": "tag5 3",
+      "label": "Tag 01",
+      "description": "Vel cras auctor at tortor imperdiet amet id sed rhoncus.",
+      "createdAt": "2021-05-01 12:00:00",
+      "updatedAt": "2021-05-01 12:00:00"
+    },
+    {
+      "id": "6",
+      "value": "tag 6",
+      "label": "Tag 02",
+      "description": "Vel cras auctor at tortor imperdiet amet id sed rhoncus.",
+      "createdAt": "2021-05-01 12:00:00",
+      "updatedAt": "2021-05-01 12:00:00"
+    },
+    {
+      "id": "7",
+      "value": "tag 7",
+      "label": "Tag 03",
+      "description": "Vel cras auctor at tortor imperdiet amet id sed rhoncus.",
+      "createdAt": "2021-05-01 12:00:00",
+      "updatedAt": "2021-05-01 12:00:00"
+    },
+    {
+      "value": "quang1",
+      "description": "eqweqwe",
+      "createdAt": "2023-03-07 09:46:14",
+      "updatedAt": "2023-03-07 09:46:14",
+      "id": "pzhQuOT"
+    },
+    {
+      "value": "quang 2",
+      "description": "quang 2",
+      "createdAt": "2023-03-07 09:46:28",
+      "updatedAt": "2023-03-07 09:46:28",
+      "id": "XH7QSmy"
+    },
+    {
+      "value": "quang 3",
+      "description": "quang 3",
+      "createdAt": "2023-03-07 09:46:41",
+      "updatedAt": "2023-03-07 09:46:41",
+      "id": "ojmZUG4"
+    },
+    {
+      "value": "eqw",
+      "description": "eqwe",
+      "createdAt": "2023-03-07 09:46:48",
+      "updatedAt": "2023-03-07 09:46:48",
+      "id": "lVTyGqV"
+    },
+    {
+      "value": "1adasd",
+      "description": "cadasd",
+      "createdAt": "2023-03-07 09:46:56",
+      "updatedAt": "2023-03-07 09:46:56",
+      "id": "kbSPP0Q"
+    },
+    {
+      "value": "123213",
+      "description": "32131",
+      "createdAt": "2023-03-07 09:47:27",
+      "updatedAt": "2023-03-07 09:47:27",
+      "id": "r8tkJ7h"
+    },
+    {
+      "value": "ádasd",
+      "description": "eqweqw",
+      "createdAt": "2023-03-07 10:38:39",
+      "updatedAt": "2023-03-07 10:38:39",
+      "id": "9PFn4i_"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+.customWidth {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+@media (max-width: 767px) {
+  .customWidth {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+  }
+}
+@media (max-width: 500px) {
+  .customWidth {
+    width: 100%;
+  }
+}

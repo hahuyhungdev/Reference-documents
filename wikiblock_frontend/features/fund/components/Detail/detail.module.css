@@ -1,0 +1,330 @@
+.mainContent {
+  /* border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 238 / var(--tw-border-opacity)); */
+}
+.asset-information {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.header {
+  width: 100%;
+  clear: both;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 12px 0 12px 0;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 238 / var(--tw-border-opacity));
+}
+.header-name-logo {
+  padding: 5px;
+  max-width: 200px;
+  min-width: 200px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  border-right-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 238 / var(--tw-border-opacity));
+}
+.logo-container {
+  max-width: 75px;
+  min-width: 54px;
+}
+.header-name-logo img {
+  max-width: 100%;
+}
+.header-logo {
+  width: 55px;
+  height: 55px;
+  display: inline-block;
+  border-radius: 3px;
+  background: #e0e0e9;
+  text-indent: -9999px;
+  vertical-align: middle;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.header > div {
+  flex-grow: 1;
+}
+.stack-items {
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  gap: 30px;
+}
+.header-item {
+  text-align: center;
+  flex-grow: 1;
+  border-right-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 238 / var(--tw-border-opacity));
+  padding: 10px 5px 10px 5px;
+}
+
+.header-small {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 13px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #505050;
+}
+/* .information-item {
+  border-right-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 238 / var(--tw-border-opacity));
+  padding: 10px;
+  text-align: center;
+  grid-column: span 1 / span 1;
+  width: 170px;
+}
+.information-item:first-child {
+  width: 250px;
+}
+.information-item:last-child {
+  border-right-width: 0px;
+} */
+
+.header-item-value {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #010000;
+}
+.information-item-value {
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  column-gap: 5px;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.listpost_meta {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.3;
+  display: flex;
+  column-gap: 10px;
+  color: #9998ac;
+  clear: both;
+}
+.main {
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.mainContent a {
+  color: #000000 !important;
+}
+.wallets {
+  margin-top: 10px;
+}
+.buttonWallet {
+  height: 40px !important;
+  width: 120px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 10px;
+}
+.tablecompare {
+  height: 40px;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  border-bottom-width: 1px;
+  text-transform: capitalize;
+  color: #4c4c4c;
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 238 / var(--tw-border-opacity));
+}
+.mainLeft {
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-left: 20px;
+  /* margin: 10px; */
+}
+.menuleft {
+  top: 5.2rem;
+  position: sticky;
+  overflow: auto;
+  border-radius: 5px;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 238 / var(--tw-border-opacity));
+  scroll-behavior: smooth;
+  z-index: 10;
+}
+.child_menuleft a {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 13px;
+  color: #4d4d4d;
+}
+/* .mainLeft a {
+  color: #4c4c4c ;
+} */
+.mainLeft a:hover {
+  color: #4c4c4c;
+  font-weight: 500;
+}
+.organization_ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.keymetric-content {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  color: #353535;
+}
+.keymetric-content-left {
+  text-align: left;
+}
+.keymetric-content-right {
+  text-align: right;
+}
+.intro {
+  margin-top: 10px;
+}
+.intro p {
+  color: #353535;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+.intro .fields {
+  margin-bottom: 10px;
+  font-weight: 500;
+  display: flex;
+}
+.intro h3 {
+  font-weight: initial;
+}
+.highlights {
+  margin-top: 10px;
+}
+.highlights h3 {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.contain-investment {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 4px;
+}
+.children-investment {
+  margin: 5px 5px 10px 5px;
+}
+@media (max-width: 1280px) {
+  .mainContent {
+    grid-column: span 4 / span 4;
+  }
+  .mainRight {
+    display: none;
+  }
+}
+@media (max-width: 1023px) {
+  .menuleft {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .child_menuleft {
+    justify-content: center;
+    border-width: 1px;
+    background-color: #d9d9d9;
+  }
+  .mainLeft {
+    grid-column: span 5 / span 5;
+    margin: 0px 0px 0px 0px;
+  }
+  .mainContent {
+    grid-column: span 5 / span 5;
+  }
+  .menuleft {
+    border-width: 0px;
+  }
+  .asset-information {
+    margin-left: 0px;
+  }
+}
+@media (max-width: 865px) {
+  .menuleft {
+    margin: 10px 0 10px 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .information {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .information-item {
+    width: initial;
+  }
+  .information-item:first-child {
+    width: initial;
+  }
+  .header {
+    gap: 0px;
+  }
+  .stack-items {
+    gap: 0px;
+  }
+}
+@media (max-width: 505px) {
+  .menuleft {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .keymatrisc_ul {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    column-gap: 1.5rem;
+  }
+  .organization_ul {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 0.7rem;
+  }
+  .contain-investment {
+    display: block;
+  }
+  .center-CircleChart {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .header-name-logo {
+    gap: 5px;
+    min-width: auto;
+  }
+  .logo-container {
+    max-width: 45px;
+    min-width: 45px;
+  }
+  .header-logo {
+    width: 45px;
+    height: 45px;
+  }
+}

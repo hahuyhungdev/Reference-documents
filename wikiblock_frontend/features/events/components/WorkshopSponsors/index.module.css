@@ -1,0 +1,13 @@
+@media screen and (max-width: 440px) and (min-width: 360px) {
+  .event-sponsors-wrapper {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 15px;
+    column-gap: 15px;
+  }
+  .event-sponsors-item {
+    max-width: 100%;
+  }
+  .event-sponsors-item-img {
+    width: 70%;
+  }
+}

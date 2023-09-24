@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('./assets/styles/antdesign.css'); /* Using a url */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  src: url('./assets/fonts/Roboto-Regular.ttf') format('truetype');
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.text code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+div {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (min-width: 840px) {
+  .primary {
+    font-size: 4.7em;
+  }
+}
+.App {
+  background-color: #ffffff;
+  width: 100vw;
+  height: 100%;
+  max-width: 100%;
+}
+.App a {
+  text-decoration: none;
+  color: black;
+}
+.App-heatmap {
+  width: 100%;
+  position: relative;
+  height: calc(100vh - 64px);
+}
+.mainHomeTest {
+  grid-column: span 4 / span 4;
+}
+
+.demo-wrapper {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.heatmap {
+  width: 100%;
+  height: 100%;
+}
+.tooltip {
+  position: absolute;
+  left: 0px;
+  top: 5px;
+
+  background: red;
+  color: yellow;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 10px;
+  line-height: 18px;
+  display: none;
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* css for serial */
+
+main {
+  /*position: absolute;*/
+  line-height: 1.4rem;
+  left: 0;
+  right: 0;
+  /*top: 32px;*/
+  /*bottom: 4.5rem;*/
+  overflow-y: scroll;
+  max-width: 100%;
+}
+#toolbar,
+#output > pre {
+  font-family: 'Fira Code VF', monospace;
+  letter-spacing: 0.1ch;
+  white-space: pre;
+  border: 0;
+  padding: 0;
+  outline: 0;
+}
+
+#output {
+  background-color: #fcfcfc;
+  min-height: 100%;
+  display: initial !important;
+}
+#output > pre {
+  word-break: break-all;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  display: inline;
+}
+#output > pre > br {
+  display: none;
+}
+#output.newlines > pre > br {
+  display: initial;
+}
+
+#input {
+  width: 100%;
+  min-height: 3em;
+}
+
+#prepend,
+#append {
+  min-width: 2ch;
+  width: fit-content;
+  font-size: 22px;
+}
+
+#attribution {
+  font-size: 12px;
+  text-align: center;
+  background-color: #5a5a5a;
+  border-top: 2px solid #a6a6a6;
+  color: white;
+}
+#attribution a {
+  color: #9cd1ff;
+}
+#attribution img {
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+x {
+  color: #053157;
+  font-style: normal;
+}
+x::after {
+  content: ' ';
+  display: inline-block;
+  color: transparent;
+  position: absolute;
+  left: 0px;
+  top: 2px;
+  bottom: 4px;
+  width: 1ch;
+  border: solid #9cd1ff;
+  border-width: 3px 0;
+}
+#input {
+  width: 100%;
+  min-height: 5em;
+}
+.ascii-input-wrap {
+  font-family: 'Fira Code VF', monospace;
+  height: fit-content;
+  min-height: 1em;
+  background-color: #ffffb4;
+  width: 15ch;
+}
+.ascii-input-wrap > pre,
+.ascii-input-wrap > textarea {
+  font-family: 'Fira Code VF', monospace;
+  letter-spacing: 0.1ch;
+  white-space: pre;
+  border: 0;
+  padding: 0;
+  outline: 0;
+}
+.ascii-input-wrap > pre,
+.ascii-input-wrap > textarea {
+  min-height: 1em;
+  font-size: 1rem;
+  word-break: break-all;
+  white-space: pre-wrap;
+  line-height: 1.2em;
+}
+.ascii-input-wrap > textarea {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.ascii-input-wrap > textarea::placeholder {
+  -webkit-text-fill-color: initial;
+}
+.ascii-input-wrap > textarea {
+  -webkit-text-fill-color: transparent;
+  background-color: transparent;
+  resize: none;
+  /* padding: 0px 0px; */
+}
+.ascii-input-wrap > pre {
+  outline: none;
+}
+/* end css for serial */

@@ -1,0 +1,25 @@
+{
+  "title": "Compare Uniswap vs an other Asset",
+  "compare": {
+    "tooltip": {
+        "revenue": "Các loại phí thu được: giao dịch, mua bán, ...diễn ra trên sản phẩm này",
+        "total_user": "Tổng số người dùng",
+        "holders": "Số người đang nắm giữ token này trên 1 năm",
+        "reliability": "Reliability",
+        "investment_potential": "Investment potential",
+        "backer_ranking": "Backer-ranking",
+        "sector_rank": "Thứ hạng vốn hóa của tài sản này so với các tài sản khác trong cùng 1 lĩnh vực"
+      },
+    "compare": "So sánh Uniswap với tài sản khác",
+    "to_ath": "% đến ATH",
+    "market_cap": "Vốn hóa",
+    "revenue": "Doanh thu",
+    "community_token": "Community token",
+    "total_user": "Tổng số người dùng",
+    "holders": "Holder > 1 năm",
+    "reliability": "Độ tin cậy",
+    "investment_potential": "Tiềm năng đầu tư",
+    "backer_ranking": "Thứ hạng backer",
+    "sector_rank": "Thứ hạng trong lĩnh vực"
+  }
+}

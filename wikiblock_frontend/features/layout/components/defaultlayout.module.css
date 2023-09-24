@@ -1,0 +1,5 @@
+@media (max-width: 1023px) {
+  .custom_sidebar {
+    grid-column: span 5 / span 5;
+  }
+}

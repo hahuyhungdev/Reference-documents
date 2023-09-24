@@ -1,0 +1,35 @@
+.option {
+  background-color: unset !important;
+}
+.option:hover {
+  color: #f4ac20 !important;
+}
+.selected {
+  color: #f4ac20 !important;
+}
+
+.filter-icon {
+  stroke: #f4ac20;
+}
+
+.filter-box {
+  background: #ffffff;
+  box-shadow: -5px 10px 30px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.filter-box-show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.events-filter-region div {
+  box-shadow: none !important;
+}
+
+@media screen and (max-width: 767px) {
+  .filter-box {
+    display: none;
+  }
+}

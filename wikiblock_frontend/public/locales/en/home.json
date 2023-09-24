@@ -1,0 +1,113 @@
+{
+  "page": {
+    "title": "wikiblock.vn",
+    "description": "wikiblock is proud to be a community developer. Our solutions bring the most practical values ​​to givers and receivers on the way to help society develop and leave no one behind."
+  },
+  "importantnews": {
+    "name": "Important News",
+    "title": "Important News Affecting Cryptocurrency Prices",
+    "description": "Summarize how important macro-economic/micro-economics/technology news affects prices",
+    "related": {
+      "title": "Related to you",
+      "description": "You need to follow multiple projects, topics, etc to see news that interests you"
+    },
+    "article": {
+      "title": "New Articles"
+    }
+  },
+  "realtimereports": {
+    "title": "CREATE REAL-TIME REPORTS AUTOMATICALLY",
+    "description": "The first version is real-time reports of crypto assets. Version 2 will have social listening. Version 3 will have intelligence reports.",
+    "change": "Change",
+    "price": "Price",
+    "name": "Name"
+  },
+  "reportother": {
+    "net_network_growth": "Net Network Growth",
+    "other": "OTHER REPORTS",
+    "onchain_signals": "Onchain Signals",
+    "social": "Top Social Trending",
+    "currencies": "Top 5 currencies this week",
+    "sector": "Top gainer/loser by sector",
+    "layer": "Top layer 0, 1",
+    "revenue": "Top Revenue",
+    "tvl": "Top TVL",
+    "search": "Top Search",
+    "many_insights": "Crypto Library with many Insights",
+    "recently": "Recently Added",
+    "lookuprecords": "Look up records of individuals and organizations",
+    "exchange": "Exchange BTC Long/Short Ratio",
+    "top_exchanges_volumes": "Top crypto Exchanges by Volumes and ratings",
+    "top_funds_roi": "Top Crypto Funds By ROI and Ratings",
+    "curent_platforms": "Current and ATH Average Returns since IDO (ROI) by Platforms in USD"
+  },
+  "profile": {
+    "profile_a_company": "Profile of a Company, Person and Product In The Crypto Market",
+    "description": "Describe the profile and evaluate the capacity and behavior of individuals and organizations in the crypto market.",
+    "company_verticals": "Company Verticals",
+    "view_all_company_verticals": "View All Company Verticals",
+    "people_directory": "People Directory",
+    "product_directory": "Product Directory",
+    "influencers": "Influencers",
+    "hard_wallets": "Hard Wallets"
+  },
+  "look_up": {
+    "year_founded": "Year Founded",
+    "number_of_investments": "Number of Investments",
+    "total_funding_amount": "Total Funding Amount",
+    "from": "From",
+    "to": "To",
+    "research_project": "Research Project",
+    "search": "Search",
+    "fund_type": "Fund Type",
+    "view_all": "View All"
+  },
+  "article": {
+    "title": "New posts",
+    "description": "Mô tả Bài viết"
+  },
+  "pagination": {
+    "page": "Trang",
+    "select-page": "Qua trang"
+  },
+  "logout": "Đăng xuất",
+  "error": {
+    "fail-to-fetch-data": "Không thể tải dữ liệu",
+    "fail-to-create": "Không thể tạo {{ target }}",
+    "fail-tpublic/locales/en/home.jsono-update": "Không thể cập nhật {{ target }}"
+  },
+  "success": {
+    "create-success": "Tạo {{ target }} thành công",
+    "update-success": "Cập nhật {{ target }} thành công"
+  },
+  "status": {
+    "active": "Hoạt động",
+    "inactive": "Không hoạt động",
+    "shared": "Đã chia sẻ",
+    "cancelled": "Đã hủy",
+    "in_delivery": "Đang giao hàng",
+    "awaiting_shared": "Chờ chia sẻ",
+    "completed": "Hoàn thành",
+    "pending_confirm": "Chờ duyệt",
+    "rejected": "Từ chối"
+  },
+  "change-type": {
+    "update": "Tin sửa",
+    "publish": "Tin đăng",
+    "cancel": "Hủy đăng tin"
+  },
+  "action": {
+    "reset": "Cài lại",
+    "edit": "Chỉnh sửa",
+    "save": "Lưu",
+    "delete": "Xóa",
+    "cancel": "Hủy",
+    "ok": "Đồng ý"
+  },
+  "input": {
+    "this-field-is-required": "Thông tin bắt buộc"
+  },
+  "modal": {
+    "follow_category": "Follow Category"
+  }
+}

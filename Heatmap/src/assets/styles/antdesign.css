@@ -1,0 +1,135 @@
+/* custon antd css */
+.antCustom :where(.css-dev-only-do-not-override-acm2ia).ant-btn-default:not(:disabled):hover {
+  color: #ffffff;
+  border-color: #c17115;
+}
+.antCustom :where(.css-dev-only-do-not-override-acm2ia).ant-pagination .ant-pagination-item-active {
+  border-color: #c17115;
+}
+.antCustom :where(.css-dev-only-do-not-override-acm2ia).ant-pagination .ant-pagination-item-active a {
+  color: #c17115;
+}
+.antCustom
+  :where(.css-dev-only-do-not-override-acm2ia).ant-pagination
+  .ant-pagination-item:not(.ant-pagination-item-active):hover {
+  background-color: white;
+  border: 1px solid #c17115;
+}
+.antCustom :where(.css-dev-only-do-not-override-acm2ia).ant-pagination .ant-pagination-item a:hover {
+  color: #c17115;
+}
+.antCustom:where(.css-dev-only-do-not-override-acm2ia).ant-pagination .ant-pagination-prev .ant-pagination-item-link,
+:where(.css-dev-only-do-not-override-acm2ia).ant-pagination .ant-pagination-next .ant-pagination-item-link:hover {
+  color: #c17115;
+}
+.antCustom:where(.css-dev-only-do-not-override-acm2ia).ant-pagination .ant-pagination-prev .ant-pagination-item-link,
+:where(.css-dev-only-do-not-override-acm2ia).ant-pagination .ant-pagination-next .ant-pagination-item-link:hover {
+  color: #c17115;
+}
+.antCustom :where(.css-dev-only-do-not-override-acm2ia).ant-pagination .ant-pagination-prev button:hover,
+:where(.css-dev-only-do-not-override-acm2ia).ant-pagination .ant-pagination-next button:hover {
+  color: #c17115;
+}
+.antCustom:where(.css-dev-only-do-not-override-acm2ia).ant-select:not(
+    :where(.css-dev-only-do-not-override-acm2ia).ant-select-customize-input
+  )
+  .ant-select-selector:hover {
+  border-color: #c17115;
+  border-radius: 1px;
+}
+
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  min-width: 100px;
+}
+.ant-pagination-item-active,
+.ant-pagination-item:hover,
+.ant-pagination-item-active:hover {
+  border-color: #c17115;
+}
+.ant-pagination-item-active a {
+  color: #c17115 !important;
+}
+.ant-pagination-item-active:focus-visible a,
+.ant-pagination-item-active:hover a,
+.ant-pagination-item:hover a {
+  color: #c17115;
+}
+.ant-pagination-prev:hover .ant-pagination-item-link {
+  color: #a85f0a;
+  border-color: #a85f0a;
+}
+.ant-pagination-next:hover .ant-pagination-item-link {
+  color: #a85f0a;
+  border-color: #a85f0a;
+}
+/* behavior click ant select then property  ant-select-arrow will transform: rotate(180deg) */
+.ant-select-open .ant-select-arrow {
+  transform: rotate(180deg);
+}
+.ant-pagination-item-active,
+.ant-pagination-item:hover,
+.ant-pagination-item-active:hover {
+  border-color: #c17115 !important;
+}
+.ant-pagination-item-active a,
+.ant-pagination-item:hover a,
+.ant-pagination-item-active:hover a {
+  color: #c17115 !important;
+}
+.ant-input-affix-wrapper-focused,
+.ant-input-affix-wrapper:focus {
+  border-color: #c17115 !important;
+  box-shadow: 0 0 0 2px rgba(168, 95, 10, 0.2) !important;
+}
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+  border-color: #c17115 !important;
+}
+.ant-dropdown-menu-title-content {
+  display: flex !important;
+  align-items: center;
+}
+/* hover checkbox */
+.ant-checkbox:hover .ant-checkbox-inner,
+.ant-checkbox-input:focus + .ant-checkbox-inner {
+  border-color: #c17115 !important;
+}
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #c17115 !important;
+  border-color: #c17115 !important;
+}
+.ant-checkbox-indeterminate .ant-checkbox-inner:after {
+  background-color: #c17115 !important;
+  border-color: #c17115 !important;
+}
+.ant-table-tbody > tr.ant-table-row-selected > td {
+  background-color: #fdf1e2 !important;
+}
+.ant-checkbox :hover {
+  border-color: #c17115 !important;
+}
+
+/* custom sort */
+.ant-table-column-sorter-down.active,
+.ant-table-column-sorter-up.active {
+  color: #c17115 !important;
+}
+.ant-btn-primary {
+  color: white !important;
+  background-color: #c17115 !important;
+  border-color: #c17115 !important;
+}
+
+.ant-dropdown-menu-item-selected,
+.ant-dropdown-menu-submenu-title-selected {
+  background-color: #fdf1e2 !important;
+  color: black !important;
+}
+.ant-btn-link:focus,
+.ant-btn-link:hover {
+  color: #c17115 !important;
+}
+
+.ant-table-filter-trigger.active {
+  color: #c17115 !important;
+}
+/* end custon antd css */

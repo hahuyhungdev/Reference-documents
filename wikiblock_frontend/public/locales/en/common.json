@@ -1,0 +1,237 @@
+{
+  "page": {
+    "title": "wikiblock.vn",
+    "description": "wikiblock tự hào là đơn vị phát triển vì cộng đồng. Giải pháp của chúng tôi mang tới những giá trị thiết thực nhất cho người cho và người nhận trên phương chấp giúp xã hội phát triển và không ai bị bỏ lại phía sau."
+  },
+  "importantnews": {
+    "title": "IMPORTANT NEWS AFFECTING CRYPTOCURRENCY PRICES"
+  },
+  "pagination": {
+    "page": "Trang",
+    "select-page": "Qua trang"
+  },
+  "logout": "Đăng xuất",
+  "error": {
+    "fail-to-fetch-data": "Không thể tải dữ liệu",
+    "fail-to-create": "Không thể tạo {{ target }}",
+    "fail-to-update": "Không thể cập nhật {{ target }}"
+  },
+  "success": {
+    "create-success": "Tạo {{ target }} thành công",
+    "update-success": "Cập nhật {{ target }} thành công"
+  },
+  "status": {
+    "active": "Hoạt động",
+    "inactive": "Không hoạt động",
+    "shared": "Đã chia sẻ",
+    "cancelled": "Đã hủy",
+    "in_delivery": "Đang giao hàng",
+    "awaiting_shared": "Chờ chia sẻ",
+    "completed": "Hoàn thành",
+    "pending_confirm": "Chờ duyệt",
+    "rejected": "Từ chối"
+  },
+  "change-type": {
+    "update": "Tin sửa",
+    "publish": "Tin đăng",
+    "cancel": "Hủy đăng tin"
+  },
+  "action": {
+    "reset": "Cài lại",
+    "edit": "Chỉnh sửa",
+    "save": "Lưu",
+    "delete": "Xóa",
+    "cancel": "Hủy",
+    "ok": "Đồng ý"
+  },
+  "input": {
+    "this-field-is-required": "Thông tin bắt buộc"
+  },
+  "crypto_assets": {
+    "sidebar": {
+      "all_crypto_assets": "All Crypto Assets",
+      "all_categories": "All Categories",
+      "assets_categories": "Asset categories",
+      "assets_sectors": "Assets Sectors",
+      "blockchain_ecosystem": "Blockchain Ecosystem",
+      "all_ecosystem": "All Ecosystem",
+      "leveraged_tokens": "Leveraged Tokens"
+    },
+    "table": {
+      "name": "Name",
+      "price": "Price",
+      "1d": "1D",
+      "price_chart": "Price Chart",
+      "market_cap": "Market Cap",
+      "volume": "Volume",
+      "potential": "Potential",
+      "reliability": "Reliability"
+    }
+  },
+  "header": {
+    "welcome_message": "Welcome Bonus: Sign Up & Get",
+    "welcome_message_2": "Up to $150",
+    "welcome_message_3": "in BTC",
+    "get_started": "Get Started"
+  },
+  "navbar": {
+    "crypto_assets": "Crypto Assets",
+    "realtime_report": "Realtime Report",
+    "fund": "Fund",
+    "exchange": "Exchange",
+    "directory": "Directory",
+    "signals": "Signals",
+    "news": "News",
+    "events": "Events",
+    "exploration": "Exploration",
+    "account": "Account",
+    "categories": "Categories",
+    "sector": {
+      "title": "Sectors",
+      "all": "All Sector",
+      "business_service": "Business Service",
+      "gaming": "Gaming",
+      "marketplace": "Marketplace",
+      "exchange": "Exchange",
+      "social": "Social",
+      "entertainment": "Entertainment",
+      "computing": "Computing",
+      "governance": "Governance",
+      "virtual_reality": "Virtual Reality",
+      "metaverse": "Metaverse",
+      "fan_tokens": "Fan Tokens",
+      "lending": "Lending/Borrowing",
+      "meme": "Meme",
+      "iot": "IoT",
+      "content_creation": "Content Creation"
+    },
+    "blockchain_ecosystem": "Blockchain Ecosystem"
+  },
+  "navbar-exploration": {
+    "exploration": "Exploration",
+    "analysis": "Analysis",
+    "portal": "Portal",
+    "guidelines": "Guidelines",
+    "experience": "Experience",
+    "academy": "Academy",
+    "for_newbies": "For Newbies",
+    "how_to_crypto": "How to Crypto",
+    "glossary": "Glossary",
+    "opportunity": "Opportunity",
+    "earn_money": "Earn Money",
+    "jobs": "Jobs",
+    "course": "Course"
+  },
+  "navbar-fund": {
+    "overview": "Overview",
+    "analysis": "Analysis"
+  },
+  "footer": {
+    "about": "About us",
+    "contact": "Contact us",
+    "academy": "Academy",
+    "insights": "Insights",
+    "reviews": "Reviews",
+    "how_to_buy_crypto": "How to buy crypto",
+    "experience": "Experience",
+    "jobs": "Jobs",
+    "cources": "Cources",
+    "the_landmark": "The landmark81 block, Vinhomes Central Park, Binh Thanh District, HCMC",
+    "our_partners": "Our partners",
+    "terms": "Terms",
+    "media_kit": "Media Kit",
+    "privacy": "Privacy",
+    "careers": "Careers",
+    "affiliates": "Affiliates",
+    "press": "Press",
+    "investors": "Investors",
+    "legal_privacy": "Legal & Privacy",
+    "cookie_policy": "Cookie Policy",
+    "connect": "Connect",
+    "commerce": "Commerce",
+    "pro": "Pro",
+    "help_center": "Help Center",
+    "create_account": "Create account",
+    "id_verification": "ID verification",
+    "account_infomation": "Account infomation",
+    "payment_methods": "Payment methods",
+    "account_access": "Account access",
+    "supported_crypto": "Supported crypto",
+    "supported_countries": "Supported countries",
+    "status": "Status"
+  },
+  "buttons": {
+    "show_more": "Show more",
+    "view_more": "View more"
+  },
+  "need_login_modal": {
+    "title": "You need to login to use this feature!",
+    "or": "or",
+    "forgot_password": "Forgot Password",
+    "dont_have_account": "Don't have an account?",
+    "sign_up": "Sign up",
+    "already_have_account": "Already have an account?",
+    "sign_in": "Sign in",
+    "login": "Log In"
+  },
+  "form": {
+    "username": {
+      "require": "Username is required",
+      "minlength": "Username must be at least 3 characters long",
+      "maxlength": "Username cannot be more than 25 characters long"
+    },
+    "password": {
+      "require": "Password is required",
+      "minlength": "Password must be at least 6 characters long",
+      "maxlength": "Password cannot be more than 25 characters long",
+      "contain_uppercase": "Password must contain at least one uppercase letter",
+      "rule": "Password must contain at least one number, one uppercase letter, one lowercase letter, min 8 characters"
+    }
+  },
+  "table": {
+    "name": "Name",
+    "change": "Change",
+    "discovery": "Discovery",
+    "price_chart": "Price Chart",
+    "market_cap": "Market cap",
+    "volume": "Volume",
+    "potential": "Potential",
+    "reliability": "Reliability",
+    "exchange": "Exchange",
+    "market_share": "Market Share",
+    "volume_24h": "Volume 24h",
+    "pairs": "Pairs",
+    "launched": "Launched",
+    "rating": "Rating",
+    "rating_review": "Rating & Review",
+    "fund": "Fund",
+    "current_roi": "Current ROI",
+    "ath_roi": "ATH ROI",
+    "number_of_project": "Number of project",
+    "total_funding_amount": "Total funding amount",
+    "typical_project": "Typical project",
+    "avg_chg": "Avg.chg",
+    "dominance_(dom)": "Dominance (Dom)",
+    "asset_number": "Asset number",
+    "gainer_loser_number": "Gainer/ Loser number",
+    "stage": "Stage",
+    "eco_market_cap": "Eco Market cap",
+    "dapp": "Dapp",
+    "avg_fdv": "Avg. FDV",
+    "backer": "Backer",
+    "fundraising": "Fundraising",
+    "community_vote": "Community Vote",
+    "project": "Project",
+    "timing": "Timing",
+    "price": "Price",
+    "amount": "Amount",
+    "lockup": "Lockup",
+    "category": "Category",
+    "funding_date": "Funding Date",
+    "description": "Description",
+    "round": "Round",
+    "no": "No.",
+    "1d": "1D",
+    "lookup": "Lookup (token)"
+  }
+}

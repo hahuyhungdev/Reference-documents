@@ -1,0 +1,25 @@
+.contain-nav {
+  display: grid;
+  margin-top: 10px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: 10px;
+}
+.nav {
+  grid-column: span 1 / span 1;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  column-gap: 20px;
+}
+.nav a {
+  line-height: 1.2;
+}
+.nav a:hover {
+  color: #f4ac20;
+}
+@media (max-width: 767px) {
+  .contain-nav {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 10px;
+  }
+}

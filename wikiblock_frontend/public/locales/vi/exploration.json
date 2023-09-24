@@ -1,0 +1,52 @@
+{
+  "analysis": {
+    "description": "Phân tích coin top, phân tích dự án NFT, phân tích thị trường crypto, phân tích quỹ crypto",
+    "coin_top": "Coin top",
+    "nft": "NFT & Web3",
+    "more": "Xem thêm",
+    "market": "Thị trường",
+    "fund": "Quỹ",
+    "ecosystem": "Hệ sinh thái",
+    "exchange": "Sàn",
+    "launchpad": "Bệ phóng (Launchpad)"
+  },
+  "experience": {
+    "name": "Experience",
+    "description": "Kinh nghiệm hold coin, kinh nghiệm trade, kinh nghiệm đầu tư crypto, cách học crypto hiệu quả",
+    "hold": "Hold",
+    "trade": "Trade",
+    "invest": "Đầu tư",
+    "earn": "Kiếm tiền",
+    "research": "Nghiên cứu",
+    "learn": "Học hỏi",
+    "table_of_content": "Sơ lược nội dung",
+    "related_articles": "Nội dung liên quan"
+  },
+  "how_to_crypto": {
+    "description": "Các hướng dẫn dành cho người mới tham gia thị trường crypto."
+  },
+  "academy": {
+    "description": "Giải thích các phương pháp, thuật ngữ, mô hình được xây dựng bởi Wikiblock."
+  },
+  "for_newbies": {
+    "description": "Các hướng dẫn dành cho người mới tham gia thị trường crypto.",
+    "step_1_what_is_crypto": "Bước 1: Crypto là gì?",
+    "step_2_how_to_earn_crypto": "Bước 2: Cách kiếm crypto?",
+    "step_3how_to_trade": "Bước 3: Cách trade?",
+    "step_4_what_to_use": "Bước 4: Nên dùng những gì?",
+    "step_5_what_to_read_follow": "Bước 5: Nên đọc và follow gì?"
+  },
+  "guidelines": {
+    "description": "Xem hướng dẫn và cách sử dụng của mọi thứ trong lĩnh vực crypto.",
+    "exchange": "Sàn",
+    "tool_app": "Công cụ & App",
+    "web": "Web",
+    "basic_analysis": "Phân tích cơ bản",
+    "candle_price_action": "Nến và Price Action",
+    "learn": "Learn",
+    "chart": "Biểu đồ"
+  },
+  "glossary": {
+    "description": "Hơn 316 thuật ngữ thông dụng trong Crypto."
+  }
+}

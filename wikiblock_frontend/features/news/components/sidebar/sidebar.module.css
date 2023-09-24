@@ -1,0 +1,120 @@
+.sidebar .widget {
+  padding-bottom: 0;
+}
+.sidebar .widget header > h2,
+.widget-title {
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #000;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  background: #ededf2;
+  padding: 8px;
+  display: inline-block;
+  text-transform: uppercase;
+}
+.widget-title:after {
+  content: '.';
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.object {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px #e4e6ef solid;
+  position: relative;
+}
+.object a {
+  text-decoration: none;
+  display: block;
+}
+.object a img {
+  border: 0;
+}
+.object img {
+  height: auto;
+  max-width: 100%;
+}
+.list {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px #e5e7ef solid;
+}
+.widget .list {
+  padding: 0 0 16px;
+  margin-bottom: 16px;
+}
+.hentry {
+  margin: 0;
+}
+.object .content .logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+  display: block;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
+}
+.object .content {
+  display: flex;
+  column-gap: 16px;
+}
+.object .content .title {
+  margin-bottom: 0;
+  overflow-x: hidden;
+  word-break: break-all;
+}
+.object .content h4 {
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #000;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.posts .content h4:hover {
+  color: #1f93ff;
+}
+.object .content .meta {
+  color: #9998ac;
+  font-size: 11px;
+  font-weight: 500;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 12px;
+  text-overflow: ellipsis;
+}
+@media (max-width: 1023px) {
+  .list-feed {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .list-feed .posts {
+    grid-column: span 1 / span 1;
+    padding: 12px;
+    border: 1px #e4e6f0 solid;
+    margin-bottom: 0;
+  }
+  .widget .list {
+    padding: 0 0 0;
+    margin-bottom: 0px;
+  }
+  .list {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-bottom: 0px #e5e7ef solid;
+  }
+}
+@media (max-width: 500px) {
+  .list-feed .posts {
+    grid-column: span 2 / span 2;
+  }
+}

@@ -1,0 +1,8 @@
+/* {clsx(s["main"])} */
+.typecal {
+  display: flex;
+  font-weight: 500;
+  text-align: center;
+  justify-content: space-around;
+  cursor: pointer;
+}

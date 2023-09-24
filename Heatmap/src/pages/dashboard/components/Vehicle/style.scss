@@ -1,0 +1,23 @@
+.tableVahicle {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  display: flex;
+  row-gap: 1rem;
+  flex-direction: column;
+  // max-height: 320px;
+  overflow: hidden;
+  table tr td.ant-table-selection-column,
+  table tr th.ant-table-selection-column {
+    text-align: left;
+  }
+  .ant-table-cell-scrollbar {
+    display: none;
+  }
+  .ant-table-tbody > tr > td {
+    padding: 8px !important;
+  }
+  .ant-table-thead > tr > th {
+    padding: 8px !important;
+  }
+}

@@ -1,0 +1,26 @@
+.content {
+  background-color: #f4efea;
+  height: calc(100vh - 70px);
+  margin-right: 10px;
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  float: right;
+  width: 95.7%;
+  title {
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 110%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a85f0a;
+    margin-bottom: 0;
+  }
+}
+.ant-modal-footer {
+  position: relative;
+  height: 48px;
+  background: #fafafa;
+  box-shadow: inset 0px 1px 0px #f0f0f0;
+}

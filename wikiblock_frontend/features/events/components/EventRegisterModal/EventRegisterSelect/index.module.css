@@ -1,0 +1,11 @@
+@media screen and (max-width: 561px) {
+  .select-desktop {
+    display: none;
+  }
+  .select-mobile {
+    display: block;
+  }
+  .select-label {
+    white-space: pre-wrap;
+  }
+}

@@ -1,0 +1,32 @@
+@import 'assets/styles/_content.scss';
+.ant-modal-content {
+  border-radius: 5px !important;
+  .ant-upload-list-picture .ant-upload-list-item-name,
+  .ant-upload-list-text .ant-upload-list-item-name {
+    color: #a85f0a;
+  }
+  .ant-modal-footer {
+    @extend .ant-modal-footer;
+  }
+  .ant-modal-header {
+    background: #a85f0a;
+    border-radius: 4px;
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 24px;
+    .ant-modal-title {
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+    }
+  }
+}
+.warningConfirm {
+  span {
+    display: flex;
+
+    gap: 10px;
+  }
+}

@@ -1,0 +1,23 @@
+.root {
+  border: 1px solid;
+  padding: 8px 20px;
+  border-radius: 4px;
+}
+
+.success {
+  border-color: var(--success);
+  background-color: #efffe7;
+}
+
+.error {
+  border-color: var(--error);
+  background-color: #ffecec;
+}
+
+.message {
+  font-size: 1rem;
+}
+
+.description {
+  font-size: 0.8rem;
+}

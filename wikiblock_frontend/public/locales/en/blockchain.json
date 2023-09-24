@@ -1,0 +1,33 @@
+{
+  "page": {
+    "title": "Block Chain"
+  },
+  "heading": "Overview of the Blockchain Ecosystem",
+  "description": "Since its inception, the Uniswap Protocol",
+  "filter": {
+    "overview": "Overview",
+    "growth": "Growth",
+    "technology": "Technology",
+    "filter": "Filter",
+    "founded": "Founded",
+    "stage": "Stage",
+    "backer": "Backer",
+    "eco_market_cap": "Eco Market cap",
+    "avg_FDV": "Avg. FDV",
+    "community": "Community voting - The future of the internet",
+    "cancel_button": "Cancel",
+    "apply_button": "Apply",
+    "reset_button": "Reset all filters"
+  },
+  "table": {
+    "name": "Name",
+    "founded": "Founded",
+    "stage": "Stage",
+    "eco_market_cap": "Eco Market cap",
+    "avg_FDV": "Avg. FDV",
+    "backer": "Backer",
+    "fundraising": "Fundraising",
+    "community": "Community Vote",
+    "dapp": "Dapp"
+  }
+}

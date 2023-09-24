@@ -1,0 +1,77 @@
+{
+  "page": {
+    "title": "Sự kiện"
+  },
+  "navbar": {
+    "event": "Event",
+    "all_events": "Tất cả events",
+    "workshop": "Hội thảo",
+    "conference": "Hội nghị",
+    "summit": "Hội nghị thượng đỉnh",
+    "expo": "Triển lãm",
+    "meetup": "Gặp gỡ",
+    "hackathon": "Hackathon",
+    "drink_party": "Tiệc",
+    "other": "Khác"
+  },
+  "submit_event": "Submit Event",
+  "section_1": {
+    "title": "Cryptocurrency events, blockchain events in “Location”  ex: United States",
+    "desc": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur"
+  },
+  "prev_button": "Cũ hơn",
+  "next_button": "Mới hơn",
+  "trending_events": "Sự kiện nổi bật",
+  "related_events": "Sự kiện liên quan",
+  "significant_events": "Sự kiện quan trọng",
+  "hashtag": "Từ khóa",
+  "type": {
+    "office": "Offline",
+    "online": "Online",
+    "virtual": "Ảo"
+  },
+  "apply_button": "Xong",
+  "cancel_button": "Hủy",
+  "reset_filter_button": "Bỏ mọi chế độ",
+  "save_date_button": "Lưu lịch",
+  "register_button": "Đăng ký",
+  "ticket": "Vé",
+  "voucher_code": "Mã giảm giá",
+  "conditional_here": "Xem điều kiện",
+  "receive_the_recap": "Nhận recap",
+  "leave_your_email": "Email của bạn",
+  "contact": "Liên hệ",
+  "no_table": "Lưu ý",
+  "event_social_profile": "Event Social profile",
+  "event_media": "Event Media",
+  "introduction": "Giới thiệu",
+  "agenda": "Agenda",
+  "speakers": "Speakers",
+  "sponsors": "Nhà tài trợ",
+  "registration": "Đăng ký tham gia",
+  "form": {
+    "full_name": "Họ tên đầy đủ",
+    "email": "Email",
+    "phone": "Số điện thoại",
+    "telegram": "Telegram",
+    "problem": "Vấn đề bạn muốn được giải đáp",
+    "have_long": "Bạn đã tham gia thị trường Crypto bao lâu rồi?",
+    "submit": "Gửi",
+    "mon": "tháng",
+    "year": "năm"
+  },
+  "no_events_found": "Không tìm thấy sự kiện nào",
+  "detail_button": "Chi tiết",
+  "slide_button": "Slide",
+  "recap_button": "Recap Meeting",
+  "errors": {
+    "require_error": "không được bỏ trống",
+    "phone_error": "Số điện thoại không hợp lệ",
+    "email_error": "Email không hợp lệ",
+    "min_name_error": "Tên phải có ít nhất 2 ký tự",
+    "error_message": "Đã xảy ra lỗi khi đăng ký sự kiện. Vui lòng thử lại sau"
+  },
+  "success": {
+    "success_message": "Cảm ơn bạn đã đăng ký sự kiện của chúng tôi. Chúng tôi sẽ liên hệ với bạn sớm nhất có thể"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "page": {
+    "title": "wikiblock.vn",
+    "description": "wikiblock tự hào là nhà phát triển cộng đồng. Các giải pháp của chúng tôi mang lại những giá trị thiết thực nhất cho người cho và người nhận trên con đường giúp xã hội phát triển và không bỏ lại ai phía sau."
+  },
+  "importantnews": {
+    "name": "Tin quan trọng",
+    "title": "Tin tức quan trọng ảnh hưởng đến giá tiền điện tử",
+    "description": "Tóm tắt Tin tức quan trọng từ Kinh tế vĩ mô/Công nghệ có ảnh hưởng đến Giá cả và Thị trường Crypto",
+    "related": {
+      "title": "Tin của bạn",
+      "description": "Bạn cần theo dõi nhiều dự án, chủ đề, v.v. để xem tin tức mà bạn quan tâm"
+    },
+    "article": {
+      "title": "Bài viết mới"
+    }
+  },
+  "realtimereports": {
+    "title": "Tạo báo cáo Real-time tự động",
+    "description": "Phiên bản đầu tiên là báo cáo Realtime về tài sản tiền mã hóa, phiên bản 2 sẽ có nghiên cứu dư luận xã hội. Phiên bản 3 là các bản tin tức",
+    "change": "Thay đổi",
+    "price": "Giá",
+    "name": "Tên"
+  },
+  "reportother": {
+    "net_network_growth": "Tăng trưởng mạng lưới",
+    "other": "Báo cáo khác",
+    "onchain_signals": "Onchain Signals",
+    "social": "Xu hướng chủ đạo trên mạng xã hội",
+    "currencies": "Top 5 tiền mã hóa tuần này",
+    "sector": "Tăng/giảm nhiều nhất theo ngành",
+    "layer": "Top doanh thu",
+    "revenue": "Top doanh thu",
+    "tvl": "Top TVL",
+    "search": "Top tìm kiếm",
+    "many_insights": "Thư viện Crypto với nhiều Insights",
+    "recently": "Thêm gần đây",
+    "lookuprecords": "Tra cứu hồ sơ cá nhân và tổ chức",
+    "exchange": "Tỷ lệ long/short BTC trên các sàn",
+    "top_exchanges_volumes": "Top sàn giao dịch xếp hạng theo khối lượng giao dịch và điểm đánh giá",
+    "top_funds_roi": "Top quỹ đầu tư tiền điện tử xếp hạng theo ROI và điểm đánh giá",
+    "curent_platforms": "Lợi nhuận thu được ở mức giá hiện tại và giá ATH kể từ khi mở bán IDO"
+  },
+  "profile": {
+    "profile_a_company": "Hồ sơ của một Công ty, Nhân vật và Sản phẩm của thị trường Crypto",
+    "description": "Mô tả hồ sơ và đánh giá khả năng và hành vi của những cá nhân hoặc tổ chức trong thị trường Crypto.",
+    "company_verticals": "Nhóm công ty",
+    "view_all_company_verticals": "Xem tất cả các nhóm công ty",
+    "people_directory": "Danh mục Nhân vật",
+    "product_directory": "Danh mục Sản phẩm",
+    "influencers": "Những người có tầm ảnh hưởng",
+    "hard_wallets": "Ví cứng"
+  },
+  "look_up": {
+    "year_founded": "Năm ra đời",
+    "number_of_investments": "Số lượng đầu tư",
+    "total_funding_amount": "Tổng số tiền đầu tư",
+    "from": "Từ",
+    "to": "Đến",
+    "search": "Tìm kiếm",
+    "research_project": "Dự án nghiên cứu",
+    "fund_type": "Loại quỹ",
+    "view_all": "Xem tất cả"
+  },
+  "article": {
+    "title": "Bài viết mới",
+    "description": "Mô tả bài viết"
+  },
+  "pagination": {
+    "page": "Trang",
+    "select-page": "Qua trang"
+  },
+  "logout": "Đăng xuất",
+  "error": {
+    "fail-to-fetch-data": "Không thể tải dữ liệu",
+    "fail-to-create": "Không thể tạo {{ target }}",
+    "fail-to-update": "Không thể cập nhật {{ target }}"
+  },
+  "success": {
+    "create-success": "Tạo {{ target }} thành công",
+    "update-success": "Cập nhật {{ target }} thành công"
+  },
+  "status": {
+    "active": "Hoạt động",
+    "inactive": "Không hoạt động",
+    "shared": "Đã chia sẻ",
+    "cancelled": "Đã hủy",
+    "in_delivery": "Đang giao hàng",
+    "awaiting_shared": "Chờ chia sẻ",
+    "completed": "Hoàn thành",
+    "pending_confirm": "Chờ duyệt",
+    "rejected": "Từ chối"
+  },
+  "change-type": {
+    "update": "Tin sửa",
+    "publish": "Tin đăng",
+    "cancel": "Hủy đăng tin"
+  },
+  "action": {
+    "reset": "Cài lại",
+    "edit": "Chỉnh sửa",
+    "save": "Lưu",
+    "delete": "Xóa",
+    "cancel": "Hủy",
+    "ok": "Đồng ý"
+  },
+  "input": {
+    "this-field-is-required": "Thông tin bắt buộc"
+  },
+  "modal": {
+    "follow_category": "Theo dõi chủ đề"
+  }
+}

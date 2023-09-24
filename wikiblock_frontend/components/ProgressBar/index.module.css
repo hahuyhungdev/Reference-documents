@@ -1,0 +1,15 @@
+.progress {
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 0.5rem /* 8px */;
+  margin-bottom: 0.5rem /* 8px */;
+  width: 100%;
+  height: 8px;
+  display: flex;
+}
+/* .progress-item {
+  background: rgb(191, 32, 101);
+  height: 20px;
+} */

@@ -1,0 +1,15 @@
+{
+  "heading": "All categories",
+  "description": "Text description here",
+  "total_market_cap": "Total Market Cap All Categories",
+  "popular_crypto_categories": "POPULAR CRYPTO CATEGORIES",
+  "table": {
+    "name": "Name",
+    "market_cap": "Market Cap",
+    "avg_chg": "Avg. Chg",
+    "volume": "Volume",
+    "dominance": "Dominance",
+    "assets_number": "No. Assets",
+    "gainer": "Gainer/ Loser Number"
+  }
+}

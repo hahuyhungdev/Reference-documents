@@ -1,0 +1,50 @@
+{
+  "analysis": {
+    "description": "Coin top Analysis, NFT Analysis, Market & Fund Analysis",
+    "coin_top": "Coin top",
+    "nft": "NFT & Web3",
+    "more": "More",
+    "market": "Market",
+    "fund": "Fund",
+    "ecosystem": "Ecosystem",
+    "exchange": "Exchange",
+    "launchpad": "Launchpad"
+  },
+  "experience": {
+    "name": "Experience",
+    "description": "Top coin analysis, NFT project analysis, crypto market analysis, crypto exchange and fund analysis",
+    "hold": "Hold",
+    "trade": "Trade",
+    "invest": "invest",
+    "earn": "earn",
+    "research": "research",
+    "learn": "learn",
+    "table_of_content": "table of content",
+    "related_articles": "related articles"
+  },
+  "how_to_crypto": {
+    "description": "Step-by-steps for Newbies in cryptocurrency."
+  },
+  "academy": {
+    "description": "Giải thích các phương pháp, thuật ngữ, mô hình được xây dựng bởi Wikiblock."
+  },
+  "for_newbies": {
+    "step_1_what_is_crypto": "Step 1: What is Crypto?",
+    "step_2_how_to_earn_crypto": "Step 2: How to Earn Crypto?",
+    "step_3how_to_trade": "Step 3: How to Trade?",
+    "step_4_what_to_use": "Step 4: What to Use?",
+    "step5readstep_5_what_to_read_follow_follow": "Step 5: What to Read & Follow?"
+  },
+  "guidelines": {
+    "description": "Learn all the introduction and how-to-use of everything in cryptocurrency.",
+    "exchange": "Exchange",
+    "tool_app": "Tool & App",
+    "web": "Web",
+    "basic_analysis": "Basic Analysis",
+    "candle_price_action": "Candle & Price Action",
+    "chart": "chart"
+  },
+  "glossary": {
+    "description": "More than 316 glossary definitions of common Crypto terms."
+  }
+}

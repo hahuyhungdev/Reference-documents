@@ -1,0 +1,127 @@
+.container {
+  display: flex;
+  position: relative;
+  margin: auto;
+  clear: both;
+  padding: 0;
+  border-top: 1px #e5e7ef solid;
+}
+.news-feed {
+  height: auto;
+  /* width: 73%; */
+  float: left;
+  padding: 0;
+}
+/* custom sidebar */
+.sidebar {
+  float: left;
+  width: 26%;
+  padding: 30px;
+  border-left: 1px #e4e6ef solid;
+}
+.edge {
+  background: 0 0;
+  padding: 30px;
+}
+.right {
+  float: right;
+  width: 27%;
+  padding: 30px;
+  border-left: 1px #e5e7f0 solid;
+}
+.footer {
+  width: 100%;
+  height: auto;
+  clear: both;
+
+  padding: 0 30px 40px;
+  background: #fff;
+  border-top: 1px #e5e7ef solid;
+}
+/* end custom sidebar */
+.mainLeft a {
+  color: #4c4c4c !important;
+}
+.mainLeft a:hover {
+  color: #4c4c4c;
+  font-weight: 500;
+}
+.btn-container {
+  text-align: center;
+  display: flex;
+  padding: 0;
+  gap: 12px;
+}
+.btn-container .load-more {
+  display: block;
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 13px;
+  padding: 16px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 2px;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+.btn-container .load-more:hover {
+  background: #000;
+  color: #fff;
+}
+.sidebar .load-more {
+  font-size: 12px;
+  background: #ededf2;
+  color: #636276;
+  padding: 12px;
+  width: 100%;
+  border-radius: 3px;
+  position: relative;
+  flex-grow: 1;
+}
+.sidebar .load-more:hover {
+  color: #4e4e4e;
+  background-color: #fff;
+  box-shadow: inset 0 0 0 1px #ededf2, 2px 3px 3px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 1279px) {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .news-feed {
+    grid-column: span 2 / span 2;
+    width: 100%;
+  }
+  .right {
+    grid-column: span 1 / span 1;
+    width: 100%;
+  }
+}
+@media (max-width: 1023px) {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .news-feed {
+    grid-column: span 3 / span 3;
+    width: 100%;
+  }
+  .right {
+    grid-column: span 3;
+    width: 100%;
+  }
+}
+@media (max-width: 700px) {
+  .right {
+    padding: 20px 0 20px 0;
+    border-left: 0px;
+  }
+}
+@media (max-width: 500px) {
+  .footer {
+    padding: 0 0 40px;
+  }
+}

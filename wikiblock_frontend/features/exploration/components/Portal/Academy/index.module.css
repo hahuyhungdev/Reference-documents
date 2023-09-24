@@ -1,0 +1,15 @@
+.contain-nav {
+  display: grid;
+  margin-top: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.nav {
+  grid-column: span 1 / span 1;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  column-gap: 20px;
+}
+.nav a:hover {
+  color: #f4ac20;
+}

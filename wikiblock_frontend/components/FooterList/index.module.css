@@ -1,0 +1,17 @@
+.footerLi {
+  border: none;
+  width: 100%;
+}
+
+.footerLi li {
+  padding-bottom: 8px;
+}
+
+.footerLi li a:hover {
+  color: #4992d6;
+}
+
+.footerLi li:first-child {
+  padding-bottom: 12px;
+  padding-top: 5px;
+}

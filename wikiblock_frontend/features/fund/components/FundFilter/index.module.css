@@ -1,0 +1,70 @@
+.blockchain-filter-section {
+  box-shadow: -5px 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.blockchain-filter-section.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.blockchain-filter-section.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.blockchain-filter-section-mobile {
+  width: 100%;
+  background-color: transparent;
+  box-shadow: unset;
+}
+
+.blockchain-filter-wrapper-mobile {
+  width: 100%;
+  padding: 15px 10px;
+}
+
+.blockchain-filter-date-wrapper {
+  /* margin-bottom: 10px; */
+  justify-content: space-around;
+}
+
+.blockchain-filter-stage-wrapper {
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.blockchain-filter-slider-wrapper {
+  margin-bottom: 20px;
+}
+
+.blockchain-filter-footer {
+  padding: 10px;
+}
+
+.blockchain-filter-footer-button {
+  width: 100%;
+}
+.filter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  column-gap: 10px;
+  margin-top:5px ;
+}
+.filter-row-market {
+  display: initial;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  column-gap: 10px;
+  margin-top:5px ;
+}
+.blockchain-filter-section h3 {
+  font-size: 13px;
+  font-weight: 500;
+  color: black;
+  margin-bottom: 0px;
+}
+.blockchain-filter-section .icon{
+  margin-right: 10px;
+}

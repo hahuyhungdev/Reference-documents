@@ -1,0 +1,17 @@
+.TagsTable {
+  padding: 0px 24px !important;
+  background-color: white;
+  .action {
+    display: flex;
+    flex-direction: row;
+    column-gap: 16px;
+    span {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+      color: #a85f0a;
+      cursor: pointer;
+    }
+  }
+}

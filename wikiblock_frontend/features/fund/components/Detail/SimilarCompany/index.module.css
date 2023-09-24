@@ -1,0 +1,16 @@
+.contain-items {
+  margin-top: 4px;
+}
+.contain-custom-items {
+  display: flex;
+  margin-top: 10px;
+  padding: 5px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+@media (max-width: 500px) {
+  .contain-custom-items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

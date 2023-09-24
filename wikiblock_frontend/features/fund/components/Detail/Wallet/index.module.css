@@ -1,0 +1,10 @@
+.assets-item {
+  margin-right: 10px;
+  content: "";
+  height: 8px;
+  width: 20px;
+  background: var(--s-color);
+  display: inline-block;
+  border-radius: 1px;
+  margin: 0 6px 3px 0px;
+}

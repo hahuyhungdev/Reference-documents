@@ -1,0 +1,55 @@
+.inputWrapper {
+    @apply font-medium transition;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fdfdfd;
+    border: 1px solid #d8d5d3;
+    border-radius: 5px;
+    overflow: hidden;
+    padding-right: 10px;
+  }
+  
+  .input {
+    outline: none;
+    border: none;
+    height: 100%;
+    width: 100%;
+    margin-left: 10px;
+    &::placeholder {
+      color: #acacac;
+    }
+  }
+  
+  .error {
+    border-color: var(--error);
+  }
+  
+  .inputError {
+    color: var(--error);
+    margin-top: 20px;
+  }
+  
+  .sizeXLarge {
+    //  TODO: Add extra large styles
+  }
+  
+  .sizeLarge {
+    @apply h-[48px] w-[250px] text-base font-medium;
+    & > input {
+      @apply px-[10px];
+  }
+}
+
+.sizeMedium {
+  @apply h-[40px] w-[212px] text-sm font-medium rounded pl-[5px];
+  & > input {
+    @apply pl-[5px];
+  }
+}
+.lastInput {
+  @apply opacity-50 pr-1;
+  &:hover {
+    @apply opacity-0;
+  }
+}

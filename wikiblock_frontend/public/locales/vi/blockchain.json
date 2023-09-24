@@ -1,0 +1,33 @@
+{
+  "page": {
+    "title": "Block Chain"
+  },
+  "heading": "Tổng quan các hệ sinh thái Blockchain",
+  "description": "Since its inception, the Uniswap Protocol",
+  "filter": {
+    "overview": "Tổng Quan",
+    "growth": "Tăng Trưởng",
+    "technology": "Công Nghệ",
+    "filter": "Lọc",
+    "founded": "Ra Đời",
+    "stage": "Giai Đoạn",
+    "backer": "Backer",
+    "eco_market_cap": "Vốn Hóa Của Hệ Sinh Thái",
+    "avg_FDV": "Vốn Hóa Pha Loãng Hoàn Toàn",
+    "community": "Bầu chọn cộng đồng - Tương lai của Internet",
+    "cancel_button": "Hủy",
+    "apply_button": "Áp dụng",
+    "reset_button": "Đặt lại"
+  },
+  "table": {
+    "name": "Tên",
+    "founded": "Ra Đời",
+    "stage": "Giai Đoạn",
+    "eco_market_cap": "Vốn Hóa Của Hệ Sinh Thái",
+    "avg_FDV": "Vốn hóa pha loãng hoàn toàn",
+    "backer": "Backer",
+    "fundraising": "Hoạt động gọi vốn",
+    "community": "Cộng đồng",
+    "dapp": "Dapp"
+  }
+}

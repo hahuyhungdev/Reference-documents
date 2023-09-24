@@ -1,0 +1,75 @@
+.LookUpRedcord {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.main {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: 1rem;
+}
+.mainLeft {
+  grid-column: span 3 / span 3;
+  padding-right: 10px;
+  border-right-width: 2px;
+  border-color: #f5f5f5;
+}
+.mainRight {
+  grid-column: span 2 / span 2;
+}
+.options {
+  display: flex;
+  column-gap: 30px;
+  align-items: center;
+  margin-top: 10px;
+}
+.datatable {
+  margin-top: 25px;
+}
+.longshort {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 15px;
+  color: #000000;
+}
+.spacetable {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  column-gap: 1rem;
+}
+@media (width: 1280px) {
+  .main {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: 1rem;
+  }
+  .mainLeft {
+    grid-column: span 3 / span 3;
+    overflow: hidden;
+    margin-top: 20px;
+    border-right-width: 0px;
+  }
+  .mainRight {
+    grid-column: span 2 / span 2;
+    margin-top: 20px;
+  }
+}
+@media (max-width: 1023px) {
+  .mainLeft {
+    grid-column: span 5 / span 5;
+    overflow: hidden;
+    padding-right: 0px;
+    border-right-width: 0px;
+  }
+  .mainRight {
+    /* grid-column: span 2 / span 2; */
+    grid-column: span 5 / span 5;
+    margin-top: 20px;
+  }
+}
+@media (max-width: 639px) {
+  .spacetable {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    column-gap: 1rem;
+  }
+}

@@ -1,0 +1,11 @@
+@media screen and (max-width: 985px) {
+  .event-card-wrapper {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 549px) {
+  .event-card-wrapper {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}

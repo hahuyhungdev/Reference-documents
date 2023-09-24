@@ -1,0 +1,77 @@
+{
+  "page": {
+    "title": "Events Page"
+  },
+  "navbar": {
+    "event": "Event",
+    "all_events": "All events",
+    "workshop": "Workshop",
+    "conference": "Conference",
+    "summit": "Summit",
+    "expo": "Expo",
+    "meetup": "Meetup",
+    "hackathon": "Hackathon",
+    "drink_party": "Drinks/ Party",
+    "other": "Other"
+  },
+  "submit_event": "Submit Event",
+  "section_1": {
+    "title": "Cryptocurrency events, blockchain events in “Location”  ex: United States",
+    "desc": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur"
+  },
+  "prev_button": "Previous Events",
+  "next_button": "Next Events",
+  "trending_events": "Trending Event",
+  "related_events": "Related Event",
+  "significant_events": "Significant Event",
+  "hashtag": "Hashtag",
+  "type": {
+    "office": "Offline",
+    "online": "Online",
+    "virtual": "Virtual"
+  },
+  "apply_button": "Apply",
+  "cancel_button": "Cancel",
+  "reset_filter_button": "Reset all filters",
+  "save_date_button": "Save Date",
+  "register_button": "Register",
+  "ticket": "Ticket",
+  "voucher_code": "Voucher code",
+  "conditional_here": "Conditional here",
+  "receive_the_recap": "Receive the recap",
+  "leave_your_email": "Leave your email",
+  "contact": "Contact",
+  "no_table": "Notable (Noticeable)",
+  "event_social_profile": "Event Social Profile",
+  "event_media": "Event Media",
+  "introduction": "Introduction",
+  "agenda": "Agenda",
+  "speakers": "Speakers",
+  "sponsors": "Sponsors",
+  "registration": "Registration",
+  "form": {
+    "full_name": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "telegram": "Telegram",
+    "problem": "Problem you need to answer",
+    "have_long": "How long have you been in the crypto market?",
+    "submit": "Submit",
+    "mon": "months",
+    "year": "years"
+  },
+  "no_events_found": "No events found",
+  "detail_button": "Detail",
+  "slide_button": "Slide",
+  "recap_button": "Recap Meeting",
+  "errors": {
+    "require_error": "is required",
+    "phone_error": "Phone number is not valid",
+    "email_error": "Email is not valid",
+    "min_name_error": "Name is must be at least 2 characters",
+    "error_message": "There's something error when register event. Please try again later"
+  },
+  "success": {
+    "success_message": "Thank you for signing up for our event, me. We will contact you as soon as possible"
+  }
+}

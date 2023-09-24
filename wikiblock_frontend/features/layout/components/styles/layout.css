@@ -1,0 +1,58 @@
+.main-layout .maincontent {
+  grid-column: span 4 / span 4;
+}
+.main-layout .isPageExperience {
+  grid-column: span 5 / span 5;
+  margin-right: 40px;
+  margin-left: 40px;
+  /* border-width: 1px;
+  border-color: #eeeeee; */
+}
+.main-layout .ismaincontent-PageExperience {
+  grid-column: span 5 / span 5;
+}
+.main-layout .Navigation {
+  display: flex;
+  row-gap: 6px;
+  flex-direction: column;
+}
+.main-layout .contain-isNavigation {
+  padding-bottom: 0px !important;
+  border-width: 1px;
+  border-color: #eeeeee;
+}
+.main-layout .isBackground_color {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 13px;
+  color: #3b3b3b;
+}
+.main-layout .isNavigation {
+  flex-direction: initial;
+  text-align: center;
+  width: fit-content;
+  height: initial;
+}
+.main-layout .isActive_Sidebar_Experience {
+  background-color: white !important;
+  color: #f4ac20 !important;
+}
+.main-layout .button-nav {
+  height: 40px;
+  width: 140px;
+  background-color: initial;
+  white-space: nowrap;
+}
+.main-layout .button-nav:hover {
+  background-color: initial;
+  color: #f4ac20;
+}
+
+@media (max-width: 1023px) {
+  .main-layout .maincontent {
+    grid-column: span 5 / span 5;
+  }
+  .main-layout .Navigation {
+    height: initial;
+  }
+}
